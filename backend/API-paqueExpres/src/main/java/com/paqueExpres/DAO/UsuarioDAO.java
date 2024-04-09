@@ -41,6 +41,7 @@ public class UsuarioDAO {
             statement.setString(1, columna);
             statement.setString(2, condicion);
             try (ResultSet resultSet = statement.executeQuery()) {
+
                 // Obtener la lista de usuarios y retornarla
                 listaClientes = listarUsuarios(resultSet);
             }
@@ -49,7 +50,6 @@ public class UsuarioDAO {
                 // Cerrar la conexión con la base de datos
                 conexion.cerrarConexion();
             } catch (SQLException e) {
-
                 e.printStackTrace();
             }
         }
@@ -63,7 +63,7 @@ public class UsuarioDAO {
         while (resultSet.next()) {
             // Crear un JSONObject para cada usuario y añadirlo al JSONArray
             JSONObject usuario = new JSONObject();
-            
+
             usuario.put("id", resultSet.getString("id_usuario"));
             usuario.put("nombre", resultSet.getString("nombre"));
             usuario.put("apellido", resultSet.getString("apellido"));
@@ -73,9 +73,11 @@ public class UsuarioDAO {
             usuario.put("género", resultSet.getString("genero"));
             usuario.put("teléfono", resultSet.getString("telefono"));
             usuario.put("edad", resultSet.getString("edad"));
-            
+
             listaClientes.put(usuario);
         }
         return listaClientes;
     }
+
+
 }
