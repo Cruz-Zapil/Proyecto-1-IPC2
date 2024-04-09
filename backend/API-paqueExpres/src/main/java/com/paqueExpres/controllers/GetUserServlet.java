@@ -1,74 +1,55 @@
 package com.paqueExpres.controllers;
 
 import java.io.IOException;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 import org.json.JSONArray;
-import org.json.JSONObject;
-
 import com.paqueExpres.DAO.UsuarioDAO;
 
 @WebServlet("/consulta-usuario")
-
 public class GetUserServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
-        // recibir parametros
-
-        String columna = request.getParameter("columan");
+        // Obtener los parámetros de la solicitud HTTP
+        String columna = request.getParameter("columna");
         String condicion = request.getParameter("condicion");
 
-        JSONObject jsonResponse = new JSONObject();
+        JSONArray usuarioArray = new JSONArray();
 
-        JSONArray clientesArray = new JSONArray();
-
-        UsuarioDAO obtenerDatos = new UsuarioDAO(columna, condicion);
-        obtenerDatos.conexion();
+        UsuarioDAO usuarioDAO = new UsuarioDAO();
 
         try {
+            // Establecer la conexión con la base de datos
+            usuarioDAO.conectar();
 
-            if (condicion.equals("ALL")) {
-                clientesArray = obtenerDatos.getAllUser();
-                
-            }else {
-                clientesArray = obtenerDatos.getSepcificUser(condicion);
+            if ("ALL".equals(condicion)) {
+                // Obtener todos los usuarios si la condición es "ALL"
+                usuarioArray = usuarioDAO.obtenerTodosLosUsuarios();
+            } else {
+                // Obtener usuarios específicos según la columna y la condición
+                usuarioArray = usuarioDAO.obtenerUsuarioEspecifico(columna, condicion);
             }
-
-
-            // Enviar respuesta en formato JSON
+            // Configurar la respuesta HTTP como JSON
             response.setContentType("application/json");
-
-            try {
-
-                response.getWriter().print(clientesArray);
-                response.flushBuffer();
-
-            } catch (IOException e) {
-
-                e.printStackTrace();
-                response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
-                response.getWriter().write("Error al enviar la respuesta.");
-
-            }
+            response.getWriter().print(usuarioArray);
 
         } catch (SQLException e) {
-         
             e.printStackTrace();
-            jsonResponse.put("Error al conectar a la DB", e.getMessage());
-        }
+            // Manejar errores de conexión a la base de datos
+            response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+            response.getWriter().write("Error al conectar a la DB: " + e.getMessage());
+        } 
 
+
+         // Configurar la respuesta HTTP como JSON
+         response.setContentType("application/json");
+         response.setCharacterEncoding("UTF-8"); // Configurar la codificación de caracteres
+         
     }
-
-   
-
 }
