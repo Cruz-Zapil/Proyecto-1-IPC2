@@ -1,3 +1,4 @@
+/*
 package com.paqueExpres.controllers;
 
 import java.io.IOException;
@@ -17,7 +18,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import com.paqueExpres.util.ConexionDB;
+import com.paqueExpres.util.ConexionDb;
 
 @WebServlet("/consulta-clientes")
 
@@ -43,7 +44,7 @@ public class GetClienteServlet extends HttpServlet {
 
         /// realizamos conexion
         //Conexion conexion = new Conexion("root", "VictorQuiej135-");
-        ConexionDB conexion = new ConexionDB(  "root","VictorQuiej135-" ); 
+        ConexionDb conexion = new ConexionDb(  "root","VictorQuiej135-" ); 
 
         JSONObject jsonResponse = new JSONObject();
 
@@ -136,3 +137,4 @@ public class GetClienteServlet extends HttpServlet {
     }
 
 }
+*/

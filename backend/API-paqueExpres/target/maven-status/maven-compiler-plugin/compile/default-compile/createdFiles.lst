@@ -1,0 +1,4 @@
+com/paqueExpres/controllers/user/GetUserServlet.class
+com/paqueExpres/controllers/user/PostUserServlet.class
+com/paqueExpres/util/ConexionDb.class
+com/paqueExpres/DAO/UsuarioDAO.class
