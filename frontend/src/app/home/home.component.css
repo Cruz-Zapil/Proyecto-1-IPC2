@@ -1,0 +1,36 @@
+
+
+.fondo{
+    
+    background-color: rgb( 23, 32, 42);
+    color: bisque;
+    
+}
+
+.nav-link{
+
+    color:bisque;
+}
+.sesion {
+    border: 2px solid rgb(52, 73, 94);
+    background-color: #ffdab9; /* Un tono de beige */
+    color: rgb( 23, 32, 42);
+}
+
+
+.logo {
+    width: 150px; /* Ancho del logo */
+    height: auto; /* Altura automática para mantener la proporción */
+    margin-right: 10px; /* Margen derecho para separarlo del título */
+}
+
+h1{
+    color: whitesmoke;
+    
+}
+h3{
+    color: beige;
+}
+.row{
+    color: whitesmoke;
+}

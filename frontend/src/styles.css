@@ -1,1 +1,8 @@
 /* You can add global styles to this file, and also import other style files */
+
+
+
+#mi-body {
+   
+    background-color:  rgb(52,73,94) ; /* Esto garantiza que se aplique el color de fondo que deseas */
+}
