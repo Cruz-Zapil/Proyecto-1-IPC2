@@ -1,0 +1,17 @@
+.Inicio{
+    background-color: rgb( 23, 32, 42);
+    color: bisque;
+}
+
+.logo {
+    width: 50px; /* Ancho del logo */
+    height: auto; /* Altura automática para mantener la proporción */
+    margin-right: 10px; /* Margen derecho para separarlo del título */
+}
+
+
+.titulo {
+    display: flex; /* Usamos display flex para alinear el contenido */
+    justify-content: center; /* Centramos horizontalmente */
+    align-items: center; /* Centramos verticalmente */
+}
