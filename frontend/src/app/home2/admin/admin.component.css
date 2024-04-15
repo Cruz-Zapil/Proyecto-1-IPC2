@@ -21,9 +21,25 @@
 
 .offcanvas{
     
-        background-color: rgb( 23, 32, 42);
-       
-        color: bisque;
-    
+        background-color: rgb( 23, 32, 42);  
+        color: whitesmoke;
+}
 
+.btn-menu{
+    margin-bottom:8px ;
+    justify-content: center;    
+    width: 200px;
+    border-radius: 5px;
+    color: bisque;
+    background-color: rgb( 23, 32, 42);
+}
+
+.btn-menu:hover {
+    background-color: bisque; /* Color de fondo cuando se pasa el mouse */
+    justify-content: center;    
+    color: rgb( 23, 32, 42);
+}
+
+.offcanvas-body {
+    text-align: center; /* Centra los elementos horizontalmente */
 }

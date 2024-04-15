@@ -7,22 +7,22 @@
         <ul class="nav nav-tabs">
 
             <li class="nav-item">
-                <a class="nav-link " type="button" data-bs-toggle="offcanvas" data-bs-target="#usuario" href="#">Usuarios</a>
+                <a class="nav-link " type="button" data-bs-toggle="offcanvas" data-bs-target="#usuario">Usuarios</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link"type="button" data-bs-toggle="offcanvas" data-bs-target="#rutas" href="#">Rutas</a>
+                <a class="nav-link" type="button" data-bs-toggle="offcanvas" data-bs-target="#rutas">Rutas</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" type="button" data-bs-toggle="offcanvas" data-bs-target="#demo"href="#">Puntos Control</a>
+                <a class="nav-link" type="button" data-bs-toggle="offcanvas" data-bs-target="#puntoControl">Puntos Control</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link " type="button" data-bs-toggle="offcanvas" data-bs-target="#demo" href="#">Reportes</a>
+                <a class="nav-link " type="button" data-bs-toggle="offcanvas" data-bs-target="#reporte">Reportes</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link " type="button" data-bs-toggle="offcanvas" data-bs-target="#demo" href="#">Destino</a>
-            </li>   
+                <a class="nav-link " type="button" data-bs-toggle="offcanvas" data-bs-target="#destino">Destino</a>
+            </li>
             <li class="nav-item">
-                <a class="nav-link " type="button" data-bs-toggle="offcanvas" data-bs-target="#demo" href="#">Destino</a>
+                <a class="nav-link " type="button" data-bs-toggle="offcanvas" data-bs-target="#tarifa">Tarifa</a>
             </li>
         </ul>
 
@@ -30,13 +30,16 @@
     </div>
 
 
+    <!--  cuerpo del panel-->
+
     <div class="container p-4 pb-5 componente" id="componente">
 
-        
+        <app-new-user></app-new-user>
 
     </div>
 
 
+    <!-- Menus  -->
 
     <div id="PestaniaUsuarios">
 
@@ -46,9 +49,16 @@
                 <h1 class="offcanvas-title">Usuarios</h1>
                 <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"></button>
             </div>
+
             <div class="offcanvas-body">
-                
-                <button class="btn btn-secondary" type="button">A Button</button>
+
+                <div class="btn-group-vertical">
+
+                    <button class="btn btn-secondary btn-menu p-2" type="button">Agrear Usuario</button>
+                    <button class="btn btn-secondary btn-menu p-2" type="button">Desactivar Usuario</button>
+                    <button class="btn btn-secondary btn-menu p-2" type="button">Actualizar Datos</button>
+            
+                </div>
             </div>
         </div>
 
@@ -63,13 +73,116 @@
                 <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"></button>
             </div>
             <div class="offcanvas-body">
+
+              
                 
-                <button class="btn btn-secondary" type="button">A Button</button>
+                <div class="btn-group-vertical">
+
+                    <button class="btn btn-secondary btn-menu p-2" type="button">Agrear Ruta</button>
+                    <button class="btn btn-secondary btn-menu p-2" type="button">Desactivar Ruta</button>
+                    <button class="btn btn-secondary btn-menu p-2" type="button">Actualizar Datos</button>
+            
+                </div>
+
             </div>
-
         </div>
-
     </div>
 
+    <div id="PestaniaPContol">
+
+
+        <div class="offcanvas offcanvas-start " id="puntoControl">
+            <div class="offcanvas-header">
+                <h1 class="offcanvas-title">Punto de Control</h1>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"></button>
+            </div>
+            <div class="offcanvas-body">
+
+              
+                
+                <div class="btn-group-vertical">
+
+                    <button class="btn btn-secondary btn-menu p-2" type="button">Agrear Punto Control</button>
+                    <button class="btn btn-secondary btn-menu p-2" type="button">Desactivar Punto Control</button>
+                    <button class="btn btn-secondary btn-menu p-2" type="button">Eleminar Punto Control</button>
+                    <button class="btn btn-secondary btn-menu p-2" type="button">Actualizar Datos</button>
+            
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div id="PestaniaReportes">
+
+
+        <div class="offcanvas offcanvas-start " id="reporte">
+            <div class="offcanvas-header">
+                <h1 class="offcanvas-title">Reporte</h1>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"></button>
+            </div>
+            <div class="offcanvas-body">
+
+              
+                
+                <div class="btn-group-vertical">
+
+                    <button class="btn btn-secondary btn-menu p-2" type="button">Agrear Usuario</button>
+                    <button class="btn btn-secondary btn-menu p-2" type="button">Desactivar Usuario</button>
+                    <button class="btn btn-secondary btn-menu p-2" type="button">Actualizar Datos</button>
+            
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div id="PestaniaDestino">
+
+
+        <div class="offcanvas offcanvas-start " id="destino">
+            <div class="offcanvas-header">
+                <h1 class="offcanvas-title">Destino</h1>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"></button>
+            </div>
+            <div class="offcanvas-body">
+
+              
+                
+                <div class="btn-group-vertical">
+
+                    <button class="btn btn-secondary btn-menu p-2" type="button">Agrear Destino</button>
+                    <button class="btn btn-secondary btn-menu p-2" type="button">Desactivar Destino</button>
+                    <button class="btn btn-secondary btn-menu p-2" type="button">Actualizar Datos</button>
+            
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div id="PestaniaTarifa">
+
+
+        <div class="offcanvas offcanvas-start " id="tarifa">
+            <div class="offcanvas-header">
+                <h1 class="offcanvas-title">Tarifa</h1>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"></button>
+            </div>
+            <div class="offcanvas-body">
+
+              
+                
+                <div class="btn-group-vertical">
+
+                    <button class="btn btn-secondary btn-menu p-2" type="button">Agrear Tarifa</button>
+                    <button class="btn btn-secondary btn-menu p-2" type="button">Cambiar Tarifa</button>
+                    <button class="btn btn-secondary btn-menu p-2" type="button">Actualizar Datos</button>
+            
+                </div>
+
+            </div>
+        </div>
+    </div>   
 
 </div>
