@@ -1,20 +1,20 @@
-.container{
-    background-color: white;
-    max-width: 900px;
-    min-width: 400px;
-    border: 3px solid rgb(23, 32,42);
-    border-radius: 5px ;
-    color: rgb(23, 32,42);
-    
+.container {
+  background-color: white;
+  max-width: 900px;
+  min-width: 400px;
+  border: 3px solid rgb(23, 32, 42);
+  border-radius: 5px;
+  color: rgb(23, 32, 42);
 }
 
 .titulo {
-    display: flex; /* Usamos display flex para alinear el contenido */
-    justify-content: center; /* Centramos horizontalmente */
-    align-items: center; /* Centramos verticalmente */
+  display: flex; /* Usamos display flex para alinear el contenido */
+  justify-content: center; /* Centramos horizontalmente */
+  align-items: center; /* Centramos verticalmente */
+
 }
 
-.row {
+  .row {
     display: flex;
     justify-content: center; /* Centrar elementos horizontalmente */
 }
@@ -59,8 +59,8 @@
     
     border-radius: 5px ;
     border-color:black ;
-    color: white;
-    background-color: green;
+    color: black;
+    background-color: greenyellow;
 }
 
 .btn-cancelar:hover{
