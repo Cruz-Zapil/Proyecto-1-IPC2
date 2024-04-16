@@ -10,7 +10,7 @@ export class NewUserService {
 
   postData(data: any){
     
-    return this.http.post<>('http://',data);
+   // return this.http.post<>('http://',data);
   }
 
 
