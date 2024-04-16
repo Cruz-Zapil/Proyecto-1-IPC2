@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { DeletePuntoComponent } from './delete-punto.component';
+import { ReporteRutaComponent } from './reporte-ruta.component';
 
-describe('DeletePuntoComponent', () => {
-  let component: DeletePuntoComponent;
-  let fixture: ComponentFixture<DeletePuntoComponent>;
+describe('ReporteRutaComponent', () => {
+  let component: ReporteRutaComponent;
+  let fixture: ComponentFixture<ReporteRutaComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [DeletePuntoComponent]
+      imports: [ReporteRutaComponent]
     })
     .compileComponents();
     
-    fixture = TestBed.createComponent(DeletePuntoComponent);
+    fixture = TestBed.createComponent(ReporteRutaComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

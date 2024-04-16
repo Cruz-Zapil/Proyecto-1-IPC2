@@ -13,7 +13,8 @@
                 <a class="nav-link" type="button" data-bs-toggle="offcanvas" data-bs-target="#rutas">Rutas</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" type="button" data-bs-toggle="offcanvas" data-bs-target="#puntoControl">Puntos Control</a>
+                <a class="nav-link" type="button" data-bs-toggle="offcanvas" data-bs-target="#puntoControl">Puntos
+                    Control</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link " type="button" data-bs-toggle="offcanvas" data-bs-target="#reporte">Reportes</a>
@@ -34,7 +35,43 @@
 
     <div class="container p-4 pb-5 componente" id="componente">
 
+        @if (componente[0]){
+        <app-new-user></app-new-user>
+        }@else if(componente[1]) {
+        <app-delete-user></app-delete-user>
+        }@else if (componente[2]) {
+        <app-update-user></app-update-user>
+        }@else if (componente[3]) {
+        <app-new-ruta></app-new-ruta>
+        }@else if (componente[4]) {
+        <app-delete-ruta></app-delete-ruta>
+        }@else if (componente[5]) {
+        <app-update-ruta></app-update-ruta>
+        }@else if(componente[6]) {
+        <app-new-punto></app-new-punto>
+        }@else if (componente[7]) {
+        <app-delete-punto></app-delete-punto>
+        }@else if (componente[8]) {
+        <app-update-punto></app-update-punto>
+        }@else if (componente[9]) {
+        <app-reporte-ruta></app-reporte-ruta>
+        }@else if (componente[10]) {
+        <app-reporte-ganancia></app-reporte-ganancia>
+        }@else if (componente[11]){
+        <app-reporte-clientes></app-reporte-clientes>
+        }@else if(componente[12]){
+        <app-new-destino></app-new-destino>
+        }@else if (componente[13]){
+        <app-delete-destino></app-delete-destino>
+        }@else if(componente[14]){
+        <app-update-destino></app-update-destino>
+        }@else if (componente[15]){
         <app-new-tarifa></app-new-tarifa>
+        }@else if(componente[16]){
+        <app-change-tarifa></app-change-tarifa>
+        }@else if (componente[17]){
+        <app-update-tarifa></app-update-tarifa>
+        }
 
     </div>
 
@@ -54,10 +91,13 @@
 
                 <div class="btn-group-vertical">
 
-                    <button class="btn btn-secondary btn-menu p-2" type="button">Agrear Usuario</button>
-                    <button class="btn btn-secondary btn-menu p-2" type="button">Desactivar Usuario</button>
-                    <button class="btn btn-secondary btn-menu p-2" type="button">Actualizar Datos</button>
-            
+                    <button class="btn btn-secondary btn-menu p-2" (click)="componente[0]=true; desactivarComponente(0)"
+                        type="button">Agrear Usuario</button>
+                    <button class="btn btn-secondary btn-menu p-2" (click)="componente[1]=true; desactivarComponente(1)"
+                        type="button">Desactivar Usuario</button>
+                    <button class="btn btn-secondary btn-menu p-2" (click)="componente[2]=true; desactivarComponente(2)"
+                        type="button">Actualizar Datos</button>
+
                 </div>
             </div>
         </div>
@@ -74,14 +114,17 @@
             </div>
             <div class="offcanvas-body">
 
-              
-                
+
+
                 <div class="btn-group-vertical">
 
-                    <button class="btn btn-secondary btn-menu p-2" type="button">Agrear Ruta</button>
-                    <button class="btn btn-secondary btn-menu p-2" type="button">Desactivar Ruta</button>
-                    <button class="btn btn-secondary btn-menu p-2" type="button">Actualizar Datos</button>
-            
+                    <button class="btn btn-secondary btn-menu p-2" (click)="componente[3]=true; desactivarComponente(3)"
+                        type="button">Agrear Ruta</button>
+                    <button class="btn btn-secondary btn-menu p-2" (click)="componente[4]=true; desactivarComponente(4)"
+                        type="button">Desactivar Ruta</button>
+                    <button class="btn btn-secondary btn-menu p-2" (click)="componente[5]=true; desactivarComponente(5)"
+                        type="button">Actualizar Datos</button>
+
                 </div>
 
             </div>
@@ -98,15 +141,17 @@
             </div>
             <div class="offcanvas-body">
 
-              
-                
+
+
                 <div class="btn-group-vertical">
 
-                    <button class="btn btn-secondary btn-menu p-2" type="button">Agrear Punto Control</button>
-                    <button class="btn btn-secondary btn-menu p-2" type="button">Desactivar Punto Control</button>
-                    <button class="btn btn-secondary btn-menu p-2" type="button">Eleminar Punto Control</button>
-                    <button class="btn btn-secondary btn-menu p-2" type="button">Actualizar Datos</button>
-            
+                    <button class="btn btn-secondary btn-menu p-2" (click)="componente[6]=true; desactivarComponente(6)"
+                        type="button">Agrear Punto Control</button>
+                    <button class="btn btn-secondary btn-menu p-2" (click)="componente[7]=true; desactivarComponente(7)"
+                        type="button">Eliminar Punto Control</button>
+                    <button class="btn btn-secondary btn-menu p-2" (click)="componente[8]=true; desactivarComponente(8)"
+                        type="button">Actualizar Datos</button>
+
                 </div>
 
             </div>
@@ -123,14 +168,19 @@
             </div>
             <div class="offcanvas-body">
 
-              
-                
+
+
                 <div class="btn-group-vertical">
 
-                    <button class="btn btn-secondary btn-menu p-2" type="button">Agrear Usuario</button>
-                    <button class="btn btn-secondary btn-menu p-2" type="button">Desactivar Usuario</button>
-                    <button class="btn btn-secondary btn-menu p-2" type="button">Actualizar Datos</button>
-            
+                    <button class="btn btn-secondary btn-menu p-2" (click)="componente[9]=true; desactivarComponente(9)"
+                        type="button">Reporte de rutas</button>
+                    <button class="btn btn-secondary btn-menu p-2"
+                        (click)="componente[10]=true; desactivarComponente(10)" type="button">Reporte de ganacias
+                    </button>
+                    <button class="btn btn-secondary btn-menu p-2"
+                        (click)="componente[11]=true; desactivarComponente(11)" type="button">Reporte de
+                        clientes</button>
+
                 </div>
 
             </div>
@@ -147,14 +197,18 @@
             </div>
             <div class="offcanvas-body">
 
-              
-                
+
+
                 <div class="btn-group-vertical">
 
-                    <button class="btn btn-secondary btn-menu p-2" type="button">Agrear Destino</button>
-                    <button class="btn btn-secondary btn-menu p-2" type="button">Desactivar Destino</button>
-                    <button class="btn btn-secondary btn-menu p-2" type="button">Actualizar Datos</button>
-            
+                    <button class="btn btn-secondary btn-menu p-2"
+                        (click)="componente[12]=true; desactivarComponente(12)" type="button">Agrear Destino</button>
+                    <button class="btn btn-secondary btn-menu p-2"
+                        (click)="componente[13]=true; desactivarComponente(13)" type="button">Desactivar
+                        Destino</button>
+                    <button class="btn btn-secondary btn-menu p-2"
+                        (click)="componente[17]=true; desactivarComponente(17)" type="button">Actualizar Datos</button>
+
                 </div>
 
             </div>
@@ -171,18 +225,21 @@
             </div>
             <div class="offcanvas-body">
 
-              
-                
+
+
                 <div class="btn-group-vertical">
 
-                    <button class="btn btn-secondary btn-menu p-2" type="button">Agrear Tarifa</button>
-                    <button class="btn btn-secondary btn-menu p-2" type="button">Cambiar Tarifa</button>
-                    <button class="btn btn-secondary btn-menu p-2" type="button">Actualizar Datos</button>
-            
+                    <button class="btn btn-secondary btn-menu p-2"
+                        (click)="componente[15]=true; desactivarComponente(15)" type="button">Agrear Tarifa</button>
+                    <button class="btn btn-secondary btn-menu p-2"
+                        (click)="componente[16]=true; desactivarComponente(16)" type="button">Cambiar Tarifa</button>
+                    <button class="btn btn-secondary btn-menu p-2"
+                        (click)="componente[17]=true; desactivarComponente(17)" type="button">Actualizar Datos</button>
+
                 </div>
 
             </div>
         </div>
-    </div>   
+    </div>
 
 </div>
