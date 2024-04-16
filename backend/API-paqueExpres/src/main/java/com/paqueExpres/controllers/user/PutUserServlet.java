@@ -14,8 +14,8 @@ import org.json.JSONObject;
 
 import com.paqueExpres.DAO.UsuarioDAO;
 
-@WebServlet
-public class PutuserServlet extends HttpServlet {
+@WebServlet("/update-user")
+public class PutUserServlet extends HttpServlet {
 
     @Override
     protected void doPut(HttpServletRequest request, HttpServletResponse response)

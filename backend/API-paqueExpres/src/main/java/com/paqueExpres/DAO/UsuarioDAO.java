@@ -7,6 +7,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 import com.paqueExpres.util.ConexionDb;
 
@@ -124,6 +125,7 @@ public class UsuarioDAO {
 
         StringBuilder sb = new StringBuilder();
         String line;
+        int filasAfectads = 0;
 
         while ((line = datosEviados.readLine()) != null) {
             sb.append(line);
@@ -145,14 +147,10 @@ public class UsuarioDAO {
             statement.setString(7, jsonData.getString("edad"));
             statement.setString(8, jsonData.getString("id_usuario"));
 
-            int filasAfectads = statement.executeUpdate();
+            filasAfectads = statement.executeUpdate();
 
             // cerrando recursos
             statement.close();
-
-            if (filasAfectads > 0) {
-                return true;
-            }
 
         } finally {
             try {
@@ -161,6 +159,57 @@ public class UsuarioDAO {
             } catch (SQLException e) {
                 e.printStackTrace();
             }
+        }
+
+        if (filasAfectads > 0) {
+            return true;
+        }
+        return false;
+    }
+
+    public boolean newUser(BufferedReader datosEnviados) throws IOException, JSONException, SQLException {
+
+        StringBuilder sb = new StringBuilder();
+        String line;
+        int filasAfectadas = 0;
+
+        while ((line = datosEnviados.readLine()) != null) {
+            sb.append(line);
+        }
+
+        JSONObject jsonDatos = new JSONObject(sb.toString());
+
+        String sql = "INSERT INTO " + nameTable
+                + "(nombre, apellido, username, password_has, estado, id_rol, genero, telefono, edad) VALUES (?,?,?,?,?,?,?,?,?)";
+
+        try (PreparedStatement statement = jdbcConexion.prepareStatement(sql)) {
+
+            statement.setString(1, jsonDatos.getString("nombre"));
+            statement.setString(2, jsonDatos.getString("apellido"));
+            statement.setString(3, jsonDatos.getString("username"));
+            statement.setString(4, jsonDatos.getString("password_has"));
+            statement.setString(5, jsonDatos.getString("estado"));
+            statement.setString(6, jsonDatos.getString("id_rol"));
+            statement.setString(7, jsonDatos.getString("genero"));
+            statement.setString(8, jsonDatos.getString("telefono"));
+            statement.setString(9, jsonDatos.getString("edad"));
+
+            filasAfectadas = statement.executeUpdate();
+
+            /// cerrando recursos:
+            statement.close();
+
+        } finally {
+            try {
+                conexion.cerrarConexion();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+
+        }
+
+        if (filasAfectadas > 0) {
+            return true;
         }
 
         return false;
