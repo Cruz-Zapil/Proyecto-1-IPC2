@@ -1,5 +1,12 @@
+/home/CruzZapil/Escritorio/IPC2/Proyecto-1-IPC2/backend/API-paqueExpres/src/main/java/com/paqueExpres/DAO/RutaDAO.java
 /home/CruzZapil/Escritorio/IPC2/Proyecto-1-IPC2/backend/API-paqueExpres/src/main/java/com/paqueExpres/DAO/UsuarioDAO.java
 /home/CruzZapil/Escritorio/IPC2/Proyecto-1-IPC2/backend/API-paqueExpres/src/main/java/com/paqueExpres/controllers/GetClienteServlet.java
-/home/CruzZapil/Escritorio/IPC2/Proyecto-1-IPC2/backend/API-paqueExpres/src/main/java/com/paqueExpres/controllers/user/GetUserServlet.java
-/home/CruzZapil/Escritorio/IPC2/Proyecto-1-IPC2/backend/API-paqueExpres/src/main/java/com/paqueExpres/controllers/user/PostUserServlet.java
+/home/CruzZapil/Escritorio/IPC2/Proyecto-1-IPC2/backend/API-paqueExpres/src/main/java/com/paqueExpres/controllers/admin/rutas/GetQueryRutaServlet.java
+/home/CruzZapil/Escritorio/IPC2/Proyecto-1-IPC2/backend/API-paqueExpres/src/main/java/com/paqueExpres/controllers/admin/rutas/PostQueryRutaServlet.java
+/home/CruzZapil/Escritorio/IPC2/Proyecto-1-IPC2/backend/API-paqueExpres/src/main/java/com/paqueExpres/controllers/admin/rutas/PutNewRutaServlet.java
+/home/CruzZapil/Escritorio/IPC2/Proyecto-1-IPC2/backend/API-paqueExpres/src/main/java/com/paqueExpres/controllers/admin/rutas/PutUpdateRutaServlet.java
+/home/CruzZapil/Escritorio/IPC2/Proyecto-1-IPC2/backend/API-paqueExpres/src/main/java/com/paqueExpres/controllers/admin/user/GetQueryUserServlet.java
+/home/CruzZapil/Escritorio/IPC2/Proyecto-1-IPC2/backend/API-paqueExpres/src/main/java/com/paqueExpres/controllers/admin/user/PostUserServlet.java
+/home/CruzZapil/Escritorio/IPC2/Proyecto-1-IPC2/backend/API-paqueExpres/src/main/java/com/paqueExpres/controllers/admin/user/PutNewUSerServlet.java
+/home/CruzZapil/Escritorio/IPC2/Proyecto-1-IPC2/backend/API-paqueExpres/src/main/java/com/paqueExpres/controllers/admin/user/PutUpdateUserServlet.java
 /home/CruzZapil/Escritorio/IPC2/Proyecto-1-IPC2/backend/API-paqueExpres/src/main/java/com/paqueExpres/util/ConexionDb.java

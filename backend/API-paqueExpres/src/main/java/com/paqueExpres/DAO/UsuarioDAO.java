@@ -18,16 +18,20 @@ public class UsuarioDAO {
     private ConexionDb conexion;
     private final String nameTable = "usuario";
 
+
+    public void conexionExterno (Connection jdbcConexion){
+        this.jdbcConexion = jdbcConexion;
+    }
+
     public void conectar() throws SQLException {
 
         // Obtener una instancia de la conexión a la base de datos
-
-        conexion = (ConexionDb) ConexionDb.obtenerInstancia("root", "VictorQuiej135-");
+        conexion = ConexionDb.obtenerInstancia("root", "VictorQuiej135-");
         // Obtener la conexión
         jdbcConexion = conexion.obtenerConexion();
     }
 
-    public JSONArray obtenerTodosLosUsuarios() throws SQLException {
+    public JSONArray getAllUser() throws SQLException {
         String sqlScript = "SELECT * FROM " + nameTable;
         listaClientes = new JSONArray();
         try (PreparedStatement statement = jdbcConexion.prepareStatement(sqlScript);
@@ -39,6 +43,13 @@ public class UsuarioDAO {
             // cerrando recursos
             statement.close();
             resultSet.close();
+        }finally {
+            try {
+                // Cerrar la conexión con la base de datos
+                conexion.cerrarConexion();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
         return listaClientes;
     }
@@ -218,7 +229,9 @@ public class UsuarioDAO {
     private JSONArray listarUsuarios(ResultSet resultSet) throws SQLException {
         // Crear un JSONArray para almacenar los usuarios
         JSONArray listaClientes = new JSONArray();
-
+        RolDAO tmp = new RolDAO();
+        tmp.conexionExterno(jdbcConexion);
+        
         while (resultSet.next()) {
             // Crear un JSONObject para cada usuario y añadirlo al JSONArray
             JSONObject usuario = new JSONObject();
@@ -227,14 +240,23 @@ public class UsuarioDAO {
             usuario.put("Nombre", resultSet.getString("nombre"));
             usuario.put("Apellido", resultSet.getString("apellido"));
             usuario.put("Username", resultSet.getString("username"));
-            usuario.put("Estado", resultSet.getString("estado"));
-            usuario.put("ID_rol", resultSet.getString("id_rol"));
+
+             // Obtener el estado del usuario
+             int estadoInt = resultSet.getInt("estado");
+             String estado = (estadoInt == 1) ? "activo" : "inactivo";
+             usuario.put("Estado", estado);
+            
+         
+            String tmpCol= tmp.getCol("nombre",resultSet.getString("id_rol"));
+            usuario.put("Rol",tmpCol );
+
             usuario.put("Género", resultSet.getString("genero"));
             usuario.put("Teléfono", resultSet.getString("telefono"));
             usuario.put("Edad", resultSet.getString("edad"));
 
             listaClientes.put(usuario);
         }
+        
         return listaClientes;
     }
 
