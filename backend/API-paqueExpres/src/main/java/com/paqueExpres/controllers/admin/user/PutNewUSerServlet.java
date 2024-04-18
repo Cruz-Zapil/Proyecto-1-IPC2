@@ -28,7 +28,7 @@ public class PutNewUSerServlet extends HttpServlet {
         UsuarioDAO usuarioDAO = new UsuarioDAO();
 
         // responder con boolean
-        boolean estado;
+        boolean estado = false;
 
         /// respuesa en JSON
         JSONObject jsonResponse = new JSONObject();
@@ -64,8 +64,12 @@ public class PutNewUSerServlet extends HttpServlet {
         }
 
         // Configurar la respuesta HTTP como JSON
+
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8"); // Configurar la codificación de caracteres
+
+        // Escribir el JSON de respuesta en el PrintWriter de HttpServletResponse
+        response.getWriter().write(jsonResponse.toString());
 
     }
 
