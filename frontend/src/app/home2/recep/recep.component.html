@@ -1,1 +1,75 @@
-<p>recep works!</p>
+<div>
+
+    <!-- barra de menu:  -->
+    <div class="container p-2">
+
+        <ul class="nav nav-tabs">
+
+            <li class="nav-item">
+                <a class="nav-link" (click)="componente[2]=true; desactivarComponente(2)" type="button">Nuevo envio</a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link " type="button" data-bs-toggle="offcanvas" data-bs-target="#consultas">Consultas</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" (click)="componente[3]; desactivarComponente(3)" type="button">Entregas</a>
+            </li>
+        </ul>
+
+
+    </div>
+
+    <!-- cuerpo del componente: -->
+    <div id="body">
+
+        <div class="container p-4 pb-5 componente" id="componente">
+            @if (componente[0]) {
+                <app-package-list></app-package-list>
+            }
+            @else if (componente[1]) {
+                <app-search-package></app-search-package>
+            } @else if (componente[2]) {
+                <app-generate-invoice></app-generate-invoice>
+            }@else {
+                <app-entregar-paquete></app-entregar-paquete>
+            }
+
+
+
+        </div>
+
+
+    </div>
+
+
+    <div id="PestaniaUsuarios">
+
+
+        <div class="offcanvas offcanvas-start " id="consultas">
+            <div class="offcanvas-header">
+                <h1 class="offcanvas-title">Consultas</h1>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"></button>
+            </div>
+
+            <div class="offcanvas-body">
+
+                <div class="btn-group-vertical">
+
+                    <button class="btn btn-secondary btn-menu p-2" (click)="componente[0]=true; desactivarComponente(0)"
+                        type="button">Lista de paquetes</button>
+                    <button class="btn btn-secondary btn-menu p-2" (click)="componente[1]=true; desactivarComponente(1)"
+                        type="button">Localización de Paquete</button>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+
+
+
+
+</div>

@@ -1,0 +1,39 @@
+.container{
+    background-color: rgb(23, 32,42);
+    max-width: 900px;
+    min-width: 400px;
+    border: 3px solid white;
+    border-radius: 5px ;
+    color: bisque;
+  
+    
+}
+
+.titulo {
+    display: flex; /* Usamos display flex para alinear el contenido */
+    justify-content: center; /* Centramos horizontalmente */
+    align-items: center; /* Centramos verticalmente */
+}
+
+.buscador{
+    max-width: 500px;
+    justify-content: center;
+}
+
+.btn-buscar{
+    margin-left: 75px;
+    width: 120px;
+    border-radius: 5px ;
+    border-color: greenyellow;
+    background: none;
+    color: greenyellow;
+    
+}
+
+.btn-buscar:hover{
+    
+    border-radius: 5px ;
+    border-color:black ;
+    color:black;
+    background-color: greenyellow;
+}

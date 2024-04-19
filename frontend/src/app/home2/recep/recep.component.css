@@ -1,0 +1,43 @@
+
+.nav-link{
+    color:whitesmoke;    
+}
+
+componente {
+
+    /*background-color: whitesmoke;*/
+
+    background-color: rgb(135, 206, 235);
+    color: rgb(70, 70, 70);
+    margin-left: 5%; /* Margen izquierdo del 10% del ancho de la ventana */
+    margin-right: 5%; /* Margen derecho del 10% del ancho de la ventana */
+    max-width: 90%; /* Ancho máximo del contenedor del 80% del ancho de la ventana */
+    border: 3px solid whitesmoke;
+    border-radius: 5px;
+    
+}
+
+.offcanvas{
+    
+        background-color: rgb( 23, 32, 42);  
+        color: whitesmoke;
+}
+
+.btn-menu{
+    margin-bottom:8px ;
+    justify-content: center;    
+    width: 200px;
+    border-radius: 5px;
+    color: bisque;
+    background-color: rgb( 23, 32, 42);
+}
+
+.btn-menu:hover {
+    background-color: bisque; /* Color de fondo cuando se pasa el mouse */
+    justify-content: center;    
+    color: rgb( 23, 32, 42);
+}
+
+.offcanvas-body {
+    text-align: center; /* Centra los elementos horizontalmente */
+}
