@@ -52,6 +52,7 @@ export class NewUserComponent {
     this.estado = tipoEstado;
   }
 
+  // metodo para limpiar los imputs
   cleanImputs(): void {
     this.nombre = '';
     this.apellido = '';
@@ -73,7 +74,7 @@ export class NewUserComponent {
       id_rol: this.id_rol,
       genero: this.genero,
       telefono: this.telefono,
-      edad: this.edad,
+      edad: this.edad
     };
 
     this.cleanImputs();

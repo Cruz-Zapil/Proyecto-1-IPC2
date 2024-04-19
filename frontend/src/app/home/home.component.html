@@ -18,7 +18,7 @@
                     <a class="nav-link" data-bs-toggle="modal" href="#modalValores" role="button">Valores</a>
                 </li>
                 <li class="nav-item ms-auto"> <!-- 'ms-auto' para mover este elemento hacia la derecha -->
-                    <a class="nav-link sesion" data-bs-toggle="modal" href="#modalValores" role="button">Inicio de
+                    <a class="nav-link sesion" data-bs-toggle="modal" href="#inicioSesion" role="button">Inicio de
                         Sesion</a>
                 </li>
             </ul>
@@ -26,27 +26,24 @@
         </div>
     </div>
 
-    <!-- Modal Msion -->
-    <div class="modal fade" id="modalMision" role="dialog">
+    <!-- Modal loggin-->
+    <div class="modal fade" id="inicioSesion" role="dialog">
 
         <div class="modal-dialog">
 
             <!-- Modal content-->
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title">Modal Header</h4>
+            <div class="modal-content loggin">
+                <div class="encabezado p-3">
+                    <h4 class="modal-title">Ingrese sus datos</h4>
                 </div>
                 
                 <div class="modal-body">
-                    <p>Some text in the modal.</p>
+                    
+                    <app-sesion></app-sesion>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
-                </div>
+            
             </div>
-
         </div>
-
     </div>
 
     <!-- Modal Vision -->

@@ -2,13 +2,8 @@ package com.paqueExpres.DAO;
 
 import java.io.BufferedReader;
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
+import java.sql.*;
+import org.json.*;
 import com.paqueExpres.util.ConexionDb;
 
 public class UsuarioDAO {
@@ -97,6 +92,8 @@ public class UsuarioDAO {
                 /// acceder a los resultados
                 if (resultSet.next()) {
 
+                    user.put("success",true);
+                    user.put("messege","Bienvenido");
                     user.put("ID", resultSet.getString("id_usuario"));
                     user.put("Nombre", resultSet.getString("nombre"));
                     user.put("Apellido", resultSet.getString("apellido"));
@@ -105,10 +102,12 @@ public class UsuarioDAO {
                     user.put("Teléfono", resultSet.getString("telefono"));
                     user.put("Edad", resultSet.getString("edad"));
 
+
                 } else {
 
                     // Si no se encontraron resultados
-                    user.put("verifique sus datos", "Usuario no encontrado");
+                    user.put("success",false );
+                    user.put("messege", "Usuario no encontrado");
                 }
 
                 // cerrando recursos

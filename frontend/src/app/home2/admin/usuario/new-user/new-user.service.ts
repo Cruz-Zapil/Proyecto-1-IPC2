@@ -10,5 +10,4 @@ export class NewUserService {
     return this.http.put<any>('http://localhost:8080/paqueExpres-1.0/new-user',user_data);
   }
   
-
 }

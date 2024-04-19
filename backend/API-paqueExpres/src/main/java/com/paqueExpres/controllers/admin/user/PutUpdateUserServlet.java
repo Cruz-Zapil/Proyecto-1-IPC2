@@ -65,5 +65,7 @@ public class PutUpdateUserServlet extends HttpServlet {
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8"); // Configurar la codificación de caracteres
 
+        // Escribir el JSON de respuesta en el PrintWriter de HttpServletResponse
+        response.getWriter().write(jsonResponse.toString());
     }
 }

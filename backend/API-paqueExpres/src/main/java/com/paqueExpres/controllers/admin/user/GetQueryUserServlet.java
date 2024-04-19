@@ -52,6 +52,8 @@ public class GetQueryUserServlet extends HttpServlet {
          // Configurar la respuesta HTTP como JSON
          response.setContentType("application/json");
          response.setCharacterEncoding("UTF-8"); // Configurar la codificación de caracteres
+
+
          
     }
 }

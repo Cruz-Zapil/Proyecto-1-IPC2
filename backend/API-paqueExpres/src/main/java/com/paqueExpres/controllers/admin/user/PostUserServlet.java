@@ -40,17 +40,12 @@ public class PostUserServlet extends HttpServlet {
         UsuarioDAO usuarioDAO = new UsuarioDAO();
 
         // responder con:
-        JSONObject datosUsuario = new JSONObject();
+        JSONObject jsonResponse = new JSONObject();
         
         try {
             // establecer conexion
             usuarioDAO.conectar();
-            datosUsuario = usuarioDAO.loggin(username, password);
-
-            // configuramso respuesta http
-
-            response.setContentType("applicaton/json");
-            response.getWriter().print(datosUsuario);
+            jsonResponse = usuarioDAO.loggin(username, password);
 
         } catch (SQLException e) {
 
@@ -67,6 +62,8 @@ public class PostUserServlet extends HttpServlet {
         response.setCharacterEncoding("UTF-8"); // Configurar la codificación de caracteres
         
 
+        // Escribir el JSON de respuesta en el PrintWriter de HttpServletResponse
+        response.getWriter().write(jsonResponse.toString());
     }
 
 }

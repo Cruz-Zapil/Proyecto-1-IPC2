@@ -1,0 +1,48 @@
+
+.text-area {
+    margin: 10px;
+    width: 250px;
+    border: 2px solid rgb(23, 32, 42);
+
+}
+
+.text-area:hover {
+    border: 2px solid blue;
+}
+
+.container{
+    background-color:rgb(23, 32,42);
+    max-width: 900px;
+    min-width: 400px;
+    border: 3px solid white;
+    border-radius: 10px ;
+    color: white; 
+    
+}
+
+
+.boton-entrar {
+    width: 150px;
+    border: 1px solid greenyellow;
+    color: greenyellow;
+  }
+  .boton-entrar:hover {
+    border-color: green;
+    background-color: greenyellow;
+    color: rgb(23, 32, 42);
+  }
+  
+  .boton-cerrar {
+    width: 150px;
+    border: 1px solid red;
+    color: red;
+  }
+  .boton-cerrar:hover {
+    border-color: red;
+    background-color: red;
+    color: rgb(23, 32, 42);
+  }
+  
+
+
+

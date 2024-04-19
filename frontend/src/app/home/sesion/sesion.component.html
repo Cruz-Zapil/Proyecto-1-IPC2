@@ -1,1 +1,27 @@
-<p>sesion works!</p>
+<div>
+
+    <div class="container p-3">
+
+        <h5> Usuario </h5>
+        <input type="text" [(ngModel)]="userName" class="form-control m-4 text-area" placeholder="Usuario">
+             
+
+        <h5> Contraseña </h5>
+        <input type="password" [(ngModel)]="password" class="form-control m-4  text-area"  placeholder="Contraseña">
+             
+        <div class="pie-pagina p-4 d-flex justify-content-between">
+            <button type="button " (click)="newLoggin()" class="btn boton-entrar">Entrar</button>
+            <button type="button " class="btn boton-cerrar "  data-bs-dismiss="modal">Cerrar</button>
+
+        </div>
+        <div>
+            <p>resultado:</p>
+            <p>OK: {{messageResult}}</p>
+            <p>Error Loggin:{{errorLoggin}} </p>
+            <p>Error:{{ErrorResult}} </p>
+
+        </div>
+
+    </div>
+
+</div>
