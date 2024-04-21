@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { PackageListComponent } from "./consultar/package-list/package-list.component";
 import { SearchPackageComponent } from "./consultar/search-package/search-package.component";
-import { EntregarPaqueteComponent } from "./cliente/entregar-paquete/entregar-paquete.component";
 import { GenerateInvoiceComponent } from "./cliente/generate-invoice/generate-invoice.component";
 
 @Component({
@@ -9,7 +8,7 @@ import { GenerateInvoiceComponent } from "./cliente/generate-invoice/generate-in
     standalone: true,
     templateUrl: './recep.component.html',
     styleUrl: './recep.component.css',
-    imports: [PackageListComponent, SearchPackageComponent, EntregarPaqueteComponent, GenerateInvoiceComponent]
+    imports: [PackageListComponent, SearchPackageComponent, GenerateInvoiceComponent]
 })
 export class RecepComponent {
 
