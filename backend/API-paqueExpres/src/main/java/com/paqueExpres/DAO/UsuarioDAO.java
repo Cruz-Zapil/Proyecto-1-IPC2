@@ -9,7 +9,7 @@ import com.paqueExpres.util.ConexionDb;
 public class UsuarioDAO {
 
     private Connection jdbcConexion;
-    private JSONArray listaClientes;
+    private JSONArray listaUsuario;
     private ConexionDb conexion;
     private final String nameTable = "usuario";
 
@@ -28,12 +28,12 @@ public class UsuarioDAO {
 
     public JSONArray getAllUser() throws SQLException {
         String sqlScript = "SELECT * FROM " + nameTable;
-        listaClientes = new JSONArray();
+        listaUsuario = new JSONArray();
         try (PreparedStatement statement = jdbcConexion.prepareStatement(sqlScript);
                 ResultSet resultSet = statement.executeQuery()) {
 
             // Obtener la lista de usuarios y retornarla
-            listaClientes = listarUsuarios(resultSet);
+            listaUsuario = listarUsuarios(resultSet);
 
             // cerrando recursos
             statement.close();
@@ -46,12 +46,12 @@ public class UsuarioDAO {
                 e.printStackTrace();
             }
         }
-        return listaClientes;
+        return listaUsuario;
     }
 
     public JSONArray obtenerUsuarioEspecifico(String columna, String condicion) throws SQLException {
         String sql = "SELECT * FROM " + nameTable + " WHERE ? = ?";
-        listaClientes = new JSONArray();
+        listaUsuario = new JSONArray();
         try (PreparedStatement statement = jdbcConexion.prepareStatement(sql)) {
             statement.setString(1, columna);
             statement.setString(2, condicion);
@@ -59,7 +59,7 @@ public class UsuarioDAO {
             try (ResultSet resultSet = statement.executeQuery()) {
 
                 // Obtener la lista de usuarios y retornarla
-                listaClientes = listarUsuarios(resultSet);
+                listaUsuario = listarUsuarios(resultSet);
 
                 // cerrando recursos
                 statement.close();
@@ -74,7 +74,7 @@ public class UsuarioDAO {
                 e.printStackTrace();
             }
         }
-        return listaClientes;
+        return listaUsuario;
     }
 
     public JSONObject loggin(String username, String password) throws SQLException {

@@ -28,13 +28,7 @@ public class RolDAO {
         jdbcConexion = conexion.obtenerConexion();
     }
 
-    /*
-     * public JSONArray getAllRuta() {
-     * String sql = "SELECT * FROM " + nameTable;
-     * listaRol
-     * }
-     * 
-     */
+   
 
     public String getCol(String nameCol, String condition) throws SQLException {
         String sqlScrip = "SELECT " + nameCol + " FROM " + nameTable + " WHERE id_rol = ?";
@@ -53,6 +47,5 @@ public class RolDAO {
         }
         return result;
     }
-
 
 }
