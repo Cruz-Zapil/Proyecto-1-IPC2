@@ -27,7 +27,7 @@ public class DestinoDAO {
         jdbConnection = conexion.obtenerConexion();
     }
 
-    public JSONArray getAllCliente() throws SQLException {
+    public JSONArray getAllDestino() throws SQLException {
         String sqlScript = "SELECT * FROM " + nameTable;
         listaDesino = new JSONArray();
 
@@ -48,7 +48,7 @@ public class DestinoDAO {
                 conexion.cerrarConexion();
             } catch (SQLException e) {
                 e.printStackTrace();
-                ;
+                
             }
         }
 

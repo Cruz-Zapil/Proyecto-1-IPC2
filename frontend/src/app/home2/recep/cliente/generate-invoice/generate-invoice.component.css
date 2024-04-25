@@ -69,3 +69,8 @@
     border-radius: 5px ;
     border-color: black;
 }
+
+
+.d-none {
+    display: none ;
+}

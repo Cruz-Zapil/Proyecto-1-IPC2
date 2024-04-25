@@ -9,4 +9,22 @@ import { Component } from '@angular/core';
 })
 export class GenerateInvoiceComponent {
 
+
+  constructor() { }
+
+  mostrarSiguiente(numContainer: number) {
+    // Oculta el contenedor actual
+    const containerActual = document.getElementById("container" + numContainer);
+    if (containerActual) {
+      containerActual.classList.add("d-none");
+    }
+
+    // Muestra el siguiente contenedor
+    const siguienteContainer = numContainer + 1;
+    const siguienteContainerElement = document.getElementById("container" + siguienteContainer);
+    if (siguienteContainerElement) {
+      siguienteContainerElement.classList.remove("d-none");
+    }
+  }
+
 }

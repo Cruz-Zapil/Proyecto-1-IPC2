@@ -13,8 +13,7 @@ public class UsuarioDAO {
     private ConexionDb conexion;
     private final String nameTable = "usuario";
 
-
-    public void conexionExterno (Connection jdbcConexion){
+    public void conexionExterno(Connection jdbcConexion) {
         this.jdbcConexion = jdbcConexion;
     }
 
@@ -38,7 +37,7 @@ public class UsuarioDAO {
             // cerrando recursos
             statement.close();
             resultSet.close();
-        }finally {
+        } finally {
             try {
                 // Cerrar la conexión con la base de datos
                 conexion.cerrarConexion();
@@ -92,28 +91,30 @@ public class UsuarioDAO {
                 /// acceder a los resultados
                 if (resultSet.next()) {
 
-                    user.put("success",true);
-                    user.put("messege","Bienvenido");
+                    user.put("success", true);
+                    user.put("messege", "Bienvenido");
                     user.put("ID", resultSet.getString("id_usuario"));
                     user.put("Nombre", resultSet.getString("nombre"));
                     user.put("Apellido", resultSet.getString("apellido"));
-                    user.put("Estado", resultSet.getString("estado"));
-                    user.put("ID rol", resultSet.getString("id_rol"));
+                    user.put("ID_Rol", resultSet.getString("id_rol"));
                     user.put("Teléfono", resultSet.getString("telefono"));
                     user.put("Edad", resultSet.getString("edad"));
 
+                    // Obtener el estado del usuario
+                    int estadoInt = resultSet.getInt("estado");
+                    boolean estado = (estadoInt == 1) ? true : false;
+                    user.put("Estado", estado);
 
                 } else {
 
                     // Si no se encontraron resultados
-                    user.put("success",false );
+                    user.put("success", false);
                     user.put("messege", "Usuario no encontrado");
                 }
 
                 // cerrando recursos
                 statement.close();
                 resultSet.close();
-
             }
 
         } finally {
@@ -230,7 +231,7 @@ public class UsuarioDAO {
         JSONArray listaClientes = new JSONArray();
         RolDAO tmp = new RolDAO();
         tmp.conexionExterno(jdbcConexion);
-        
+
         while (resultSet.next()) {
             // Crear un JSONObject para cada usuario y añadirlo al JSONArray
             JSONObject usuario = new JSONObject();
@@ -240,14 +241,13 @@ public class UsuarioDAO {
             usuario.put("Apellido", resultSet.getString("apellido"));
             usuario.put("Username", resultSet.getString("username"));
 
-             // Obtener el estado del usuario
-             int estadoInt = resultSet.getInt("estado");
-             String estado = (estadoInt == 1) ? "activo" : "inactivo";
-             usuario.put("Estado", estado);
-            
-         
-            String tmpCol= tmp.getCol("nombre",resultSet.getString("id_rol"));
-            usuario.put("Rol",tmpCol );
+            // Obtener el estado del usuario
+            int estadoInt = resultSet.getInt("estado");
+            String estado = (estadoInt == 1) ? "activo" : "inactivo";
+            usuario.put("Estado", estado);
+
+            String tmpCol = tmp.getCol("nombre", resultSet.getString("id_rol"));
+            usuario.put("Rol", tmpCol);
 
             usuario.put("Género", resultSet.getString("genero"));
             usuario.put("Teléfono", resultSet.getString("telefono"));
@@ -255,7 +255,7 @@ public class UsuarioDAO {
 
             listaClientes.put(usuario);
         }
-        
+
         return listaClientes;
     }
 

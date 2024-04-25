@@ -1,12 +1,12 @@
 <div>
 
     <div class="container-fluid p-2 rounded-3 Inicio">
-        
+
         <!-- logo  de la empresa -->
-        <img src="assets/img/logo1.png" alt="Logo PaqueExpres" class="logo d-inline" >
+        <img src="assets/img/logo1.png" alt="Logo PaqueExpres" class="logo d-inline">
         <!-- titulo de la empresa -->
-        <h5 class="d-inline" > PaqueExpres... </h5> 
-         <h2 class=" titulo">{{title}}</h2>
+        <h5 class="d-inline"> PaqueExpres... </h5>
+        <h2 class=" titulo">{{title}} : {{nombreUser}}</h2>
 
 
     </div>
@@ -14,10 +14,9 @@
     <div>
 
         <!-- contenedor del los componenetes -->
+        <router-outlet></router-outlet>
 
-        <app-recep></app-recep>
-        
-
+ 
 
     </div>
 

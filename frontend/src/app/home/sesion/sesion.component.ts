@@ -1,8 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, Output, EventEmitter } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { SesionService } from './sesion.service';
-import { response } from 'express';
-import { error } from 'console';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-sesion',
@@ -12,49 +11,74 @@ import { error } from 'console';
   styleUrl: './sesion.component.css',
 })
 export class SesionComponent {
-  /// datos.
+  @Output() datosEnvio = new EventEmitter<any>();
+
+  // datos recibidos en backEnd.
+  idRol: number = 0;
+  nombreUser: String = '';
+
+  /// datos recopilados en front.
   userName: String = '';
   password: String = '';
 
   /// mensaje en restultado:
 
   messageResult: String;
-  errorLoggin:String;
+  errorLoggin: String;
   ErrorResult: String;
-  
 
-  constructor(private service_loggin: SesionService){
+  constructor(private service_loggin: SesionService, private router: Router) {
+    this.errorLoggin = '';
+    this.messageResult = '';
+    this.ErrorResult = '';
+  }
 
-    this.errorLoggin='';
-    this.messageResult ='';
-    this.ErrorResult ='';
+  /// enviar datos al componente padre:
 
+  enviarDatos() {
+    let datos = {
+      idRol: this.idRol,
+      nombreUser: this.nombreUser,
+    };
+
+    this.datosEnvio.emit(datos);
   }
 
   // metodo para usar el servicio
-  newLoggin(){
-    let userDate={
+  newLoggin() {
+    let userDate = {
       username: this.userName,
-      password: this.password
+      password: this.password,
     };
 
     this.service_loggin.loggin(userDate).subscribe(
-      (response)=>{
+      (response) => {
         /// analizar el tipo de mensaje.
-        if (response.success){
-
+        if (response.success) {
           // si es verdadero:
-          this.messageResult = response.messege;
+          if (response.Estado) {
+            this.messageResult = response.messege;
+            this.idRol = response.ID_Rol;
+            this.nombreUser = response.Nombre;
 
-        }else {
-          this.errorLoggin =  response.messege;
+            if (response.ID_Rol == 1) {
+              this.router.navigate(['/home2/admin']);
+            } else if (response.ID_Rol == 2) {
+              this.router.navigate(['/home2/operador']);
+            } else {
+              this.router.navigate(['/home2/recep']);
+            }
+          } else {
+            /// usuario inactivo =
+          }
+        } else {
+          this.errorLoggin = response.messege;
         }
       },
 
-      (error)=> {
+      (error) => {
         this.ErrorResult = error;
       }
     );
   }
-
 }

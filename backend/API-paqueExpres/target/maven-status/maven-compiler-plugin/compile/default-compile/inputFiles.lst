@@ -1,6 +1,14 @@
+/home/CruzZapil/Escritorio/IPC2/Proyecto-1-IPC2/backend/API-paqueExpres/src/main/java/com/paqueExpres/DAO/BodegaRecepDAO.java
+/home/CruzZapil/Escritorio/IPC2/Proyecto-1-IPC2/backend/API-paqueExpres/src/main/java/com/paqueExpres/DAO/ClienteDAO.java
 /home/CruzZapil/Escritorio/IPC2/Proyecto-1-IPC2/backend/API-paqueExpres/src/main/java/com/paqueExpres/DAO/DestinoDAO.java
+/home/CruzZapil/Escritorio/IPC2/Proyecto-1-IPC2/backend/API-paqueExpres/src/main/java/com/paqueExpres/DAO/DetalleFactura.java
+/home/CruzZapil/Escritorio/IPC2/Proyecto-1-IPC2/backend/API-paqueExpres/src/main/java/com/paqueExpres/DAO/FacturaDAO.java
+/home/CruzZapil/Escritorio/IPC2/Proyecto-1-IPC2/backend/API-paqueExpres/src/main/java/com/paqueExpres/DAO/PackageDAO.java
+/home/CruzZapil/Escritorio/IPC2/Proyecto-1-IPC2/backend/API-paqueExpres/src/main/java/com/paqueExpres/DAO/PuntoControlDAO.java
+/home/CruzZapil/Escritorio/IPC2/Proyecto-1-IPC2/backend/API-paqueExpres/src/main/java/com/paqueExpres/DAO/RegistroPuntoDAO.java
 /home/CruzZapil/Escritorio/IPC2/Proyecto-1-IPC2/backend/API-paqueExpres/src/main/java/com/paqueExpres/DAO/RolDAO.java
 /home/CruzZapil/Escritorio/IPC2/Proyecto-1-IPC2/backend/API-paqueExpres/src/main/java/com/paqueExpres/DAO/RutaDAO.java
+/home/CruzZapil/Escritorio/IPC2/Proyecto-1-IPC2/backend/API-paqueExpres/src/main/java/com/paqueExpres/DAO/TarifaDAO.java
 /home/CruzZapil/Escritorio/IPC2/Proyecto-1-IPC2/backend/API-paqueExpres/src/main/java/com/paqueExpres/DAO/UsuarioDAO.java
 /home/CruzZapil/Escritorio/IPC2/Proyecto-1-IPC2/backend/API-paqueExpres/src/main/java/com/paqueExpres/controllers/CorsFilter.java
 /home/CruzZapil/Escritorio/IPC2/Proyecto-1-IPC2/backend/API-paqueExpres/src/main/java/com/paqueExpres/controllers/admin/rutas/GetQueryRutaServlet.java
@@ -11,4 +19,5 @@
 /home/CruzZapil/Escritorio/IPC2/Proyecto-1-IPC2/backend/API-paqueExpres/src/main/java/com/paqueExpres/controllers/admin/user/PostUserServlet.java
 /home/CruzZapil/Escritorio/IPC2/Proyecto-1-IPC2/backend/API-paqueExpres/src/main/java/com/paqueExpres/controllers/admin/user/PutNewUSerServlet.java
 /home/CruzZapil/Escritorio/IPC2/Proyecto-1-IPC2/backend/API-paqueExpres/src/main/java/com/paqueExpres/controllers/admin/user/PutUpdateUserServlet.java
+/home/CruzZapil/Escritorio/IPC2/Proyecto-1-IPC2/backend/API-paqueExpres/src/main/java/com/paqueExpres/controllers/recep/GetQueryPackageServlet.java
 /home/CruzZapil/Escritorio/IPC2/Proyecto-1-IPC2/backend/API-paqueExpres/src/main/java/com/paqueExpres/util/ConexionDb.java

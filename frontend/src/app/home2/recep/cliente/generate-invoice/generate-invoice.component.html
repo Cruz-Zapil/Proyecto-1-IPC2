@@ -1,101 +1,75 @@
 <div>
 
-<div class="container p-5">
+
+    <div class="container p-5 ">
+
+        <h3 class="titulo"> Hacer un Nuevo Envio </h3>
+
+        <div class="container" id="container1">
+
+            <h4 class="subTitulo"> Datos del Cliente: </h4>
 
 
-    <h4 class="titulo"> Hacer un Nuevo Envio </h4>
 
-    <div class="imputs">
+            <div class="imputs">
 
-        <div class="row">
-            <div class="col-md-6">
-                <input type="text"  class="form-control text-area" placeholder="Ingrese su nombre">
-            </div>
-            <div class="col-md-6">
-                <input type="text" class="form-control text-area" placeholder="Ingrese su apellido">
+                <div class="row">
+                    <div class="col-md-6">
+                        <input type="text" class="form-control text-area" placeholder="Nombre del Cliente">
+                    </div>
+                    <div class="col-md-6">
+                        <input type="text" class="form-control text-area" placeholder="Nit del Cliente">
+                    </div>
+                </div>
+
+
+                <div class="row">
+
+                    <div class="col-md-6">
+                        <button type="button" class="btn btn-secondary  btn-cancelar ">Cancelar</button>
+                    </div>
+
+                    <div class="col-md-6">
+                        <button type="button" class="btn btn-primary btn-guardar"
+                            (click)="mostrarSiguiente(1)">Siguente</button>
+                    </div>
+
+
+                </div>
+
             </div>
         </div>
 
 
-        <div class="row">
-            <div class="col-md-6">
-                <input type="text" class="form-control text-area"  placeholder="Ingrese su correo">
-            </div>
-            <div class="col-md-6">
-                <input type="password" class="form-control text-area"  placeholder="Ingrese una contraseña">
+        <div class="container d-none" id="container2">
             
+            <h4 class="subTitulo"> Paquetes a Enviar: </h4>
+
+        <div class="imputs">
+
+
+            <div class="row">
+                <div class="col-md-6">
+                    <input type="text" class="form-control text-area" placeholder="Destino: ">
+                </div>
+                <div class="col-md-6">
+                    <input type="text" class="form-control text-area" placeholder="Ruta: ">
+                </div>
             </div>
-        </div>
-
-        <div class="row">
-            <div class="col-md-6">
-                <input type="text" class="form-control text-area"  placeholder="Ingrese su rol">
-            </div>
-
-            <div class="col-md-6">
-                <div class="dropdown">
-
-                    <button type="button" class="btn btn-primary dropdown-toggle text-area"
-                        data-bs-toggle="dropdown">Genero</button>
-
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" >Masculino</a></li>
-                        <li><a class="dropdown-item" >Femenino</a></li>
-                        <li><a class="dropdown-item" >Otro</a></li>
-                    </ul>
+            
+            <div class="row">
+                <div class="col-md-6">
+                    <input type="number" class="form-control text-area" placeholder="Peso: ">
+                </div>
+                <div class="col-md-6">
+                    <input type="text" class="form-control text-area" placeholder="Nit del Cliente">
                 </div>
             </div>
 
-        </div>
-
-        <div class="row">
-            <div class="col-md-6">
-                <input type="text" class="form-control text-area" placeholder="Ingrese no. Telefono">
-            </div>
-            <div class="col-md-6">
-
-                <input type="number" class="form-control text-area" placeholder="Ingrese su edad">
-
-            </div>
-        </div>
-
-        <div class="row">              
-
-            <div class="col-md-6">
-                <div class="dropdown">
-
-                    <button type="button" class="btn btn-primary dropdown-toggle text-area"
-                        data-bs-toggle="dropdown">Estado</button>
-
-                    <ul class="dropdown-menu">
-
-                        <li><a class="dropdown-item" >Activo</a></li>
-                        <li><a class="dropdown-item" >Inactivo</a></li>
-
-                    </ul>
-                </div>
-            </div>
-           
-
-            <div class="col-md-6">
-                
-            </div>
 
         </div>
 
 
-        <div class="row">
-
-            <div class="col-md-6">
-                <button type="button" class="btn btn-primary btn-guardar" >Guardar</button>
-            </div>
-
-
-            <div class="col-md-6">
-                <button type="button" class="btn btn-secondary  btn-cancelar " >Cancelar</button>
-            </div>
         </div>
-        
+
     </div>
-
-</div>
