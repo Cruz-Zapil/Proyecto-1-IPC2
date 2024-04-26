@@ -11,12 +11,15 @@
             <div class="imputs">
 
                 <div class="row">
+
                     <div class="col-md-6">
-                        <input type="text" class="form-control text-area" placeholder="Nombre del Cliente">
+                        <input type="text" class="form-control text-area" [(ngModel)]="id_cliente" placeholder="Nit del Cliente">
                     </div>
+
                     <div class="col-md-6">
-                        <input type="text" class="form-control text-area" placeholder="Nit del Cliente">
+                        <input type="text" class="form-control text-area" placeholder={{id_cliente}}>
                     </div>
+                  
                 </div>
 
 
@@ -42,12 +45,12 @@
 
             <div class="row">
                 <div class="col-md-6">
-                    <button type="button" class="btn btn-primary btn-destino" data-bs-toggle="modal"
+                    <button type="button" class="btn btn-primary btn-destino" data-bs-toggle="modal" (click)="obtnerDestino()"
                         data-bs-target="#destino"> Destino </button>
                 </div>
 
                 <div class="col-md-6">
-                    <input type="number" class="form-control text-area" placeholder="Peso: ">
+                    <input type="number" class="form-control text-area" [(ngModel)]="peso" placeholder="Peso: ">
                 </div>
 
 
@@ -57,11 +60,11 @@
 
 
                 <div class="col-md-6">
-                    <input type="text" class="form-control text-area" placeholder="Descripcion: ">
+                    <input type="text" class="form-control text-area" [(ngModel)]="descripcion" placeholder="Descripcion: ">
                 </div>
 
                 <div class="col-md-6">
-                    <input type="number" class="form-control text-area" placeholder="Referencia de Destino (opcional) ">
+                    <input type="text" class="form-control text-area" [(ngModel)]="referencia_destino" placeholder="Referencia de Destino (opcional) ">
                 </div>
 
             </div>
@@ -69,12 +72,13 @@
 
             <div class="row">
 
-                <div class="col-md-6">
-                    Fecha y hora: {{fechaFormateada }}
+                <div class="col-md-6 fecha">
+                    <h4> Fecha y hora: {{fechaFormateada }} </h4>
                 </div>
             </div>
 
             <div class="row botonesMenu">
+                
 
                 <div class="col-md-3">
                     <button type="button" class="btn btn-secondary btn-regresar"
@@ -84,22 +88,79 @@
                     <button type="button" class="btn btn-secondary btn-cancel">Cancelar</button>
                 </div>
                 <div class="col-md-3">
-                    <button type="button" class="btn btn-secondary btn-otro">Agregar otro</button>
+                    <button type="button" class="btn btn-secondary btn-otro" (click)="enlistaPaquete()">Agregar a Lista</button>
                 </div>
                 <div class="col-md-3">
-                    <button type="button" class="btn btn-primary btn-confirmar">Confirmar</button>
+                    <button type="button" class="btn btn-primary btn-confirmar" (click)="mostrarSiguiente(3)">Siguinte</button>
                 </div>
 
             </div>
 
         </div>
 
+
+        <div class="container d-none" id="container3">
+
+            <h4 class="subTitulo p-3"> Lista de paquetes </h4>        
+
+            <table class="table table-dark table-hover" >
+                <thead>
+                    <tr>
+                        <th>ID Cliente</th>
+                        <th>ID Destino </th>
+                        <th>Peso</th>
+                        <th>Descripcion</th>
+                        <th>Referencia</th>
+                        <th>Fecha Entrada</th>
+                    </tr>
+
+                </thead>
+                <tbody data-bs-toggle="tooltip" title="Elegir destino!" >
+                    <tr *ngFor="let paquete of listaPaquetes" >
+
+                        <td>{{ paquete.id_clinte }} </td>
+                        <td>{{ paquete.id_destino }} </td>
+                        <td>{{ paquete.peso}} </td>
+                        <td>{{ paquete.descripcion}} </td>
+                        <td>{{ paquete.referencia}} </td>
+                        <td>{{ paquete.fecha_entrada}} </td>
+
+                    </tr>
+                </tbody>
+
+            </table>
+       
+
+            <div class="row botonesMenu">               
+
+                <div class="col-md-3">
+                    <button type="button" class="btn btn-secondary btn-regresar"
+                        (click)="regresarContenedor(3)">Regresar</button>
+                </div>
+                <div class="col-md-3">
+                    <button type="button" class="btn btn-secondary btn-cancel">Cancelar</button>
+                </div>
+                <div class="col-md-3">
+                    <button type="button" class="btn btn-primary btn-confirmar" (click)="mostrarSiguiente(4); ">Confirmar</button>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- panel de factura: -->
+
+
+
+
+
         <!-- seleccionar destino -->
 
         <div>
 
             <div class="modal fade" id="destino">
-                <div class="modal-dialog">
+                <div class="modal-dialog modal-lg">
                     <div class="modal-content">
 
                         <!-- Modal Header -->
@@ -121,8 +182,8 @@
                                     </tr>
 
                                 </thead>
-                                <tbody data-bs-toggle="tooltip" title="Elegir destino!">
-                                    <tr *ngFor="let destino of destinos">
+                                <tbody data-bs-toggle="tooltip" title="Elegir destino!" >
+                                    <tr *ngFor="let destino of destinos"  (click)="destinoSelec(destino)">
 
                                         <td>{{ destino.id }} </td>
                                         <td>{{ destino.nombre }} </td>
@@ -139,10 +200,11 @@
                     </div>
                 </div>
             </div>
-
-
-
         </div>
+
+
+
+        
 
     </div>
 

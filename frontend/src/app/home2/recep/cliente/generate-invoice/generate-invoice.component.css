@@ -10,7 +10,6 @@
   display: flex; /* Usamos display flex para alinear el contenido */
   justify-content: center; /* Centramos horizontalmente */
   align-items: center; /* Centramos verticalmente */
- 
 }
 
 .titulo {
@@ -26,6 +25,10 @@
 
 .col-md-6 {
   margin-bottom: 30px; /* Añadir un margen inferior opcional para separar las filas */
+}
+
+.fecha {
+  margin-bottom: 20px; /* Añadir un margen inferior opcional para separar las filas */
 }
 
 .text-area {
@@ -161,9 +164,9 @@
   display: none;
 }
 
-.modal-content{
+.modal-content {
   background-color: rgb(23, 32, 42);
 }
-.modal-title{
+.modal-title {
   color: bisque;
 }

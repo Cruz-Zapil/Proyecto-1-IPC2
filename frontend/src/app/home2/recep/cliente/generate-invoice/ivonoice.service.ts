@@ -17,5 +17,9 @@ export class IvonoiceService {
     return this.http.get<any>('http://localhost:8080/paqueExpres-1.0/consulta-cliente',idCliente)
   }
 
+  setPackage(datosPaquete : any): any {
+    return this.http.put<any>('http://localhost:8080/paqueExpres-1.0/new-package', datosPaquete);
+  }
+
 
 }

@@ -59,6 +59,41 @@ public class RutaDAO {
 
     }
 
+
+
+    public JSONArray getPackage(String columna, String condicion) throws SQLException {
+
+        String sqlScrip = "SELECT * FROM " + nameTable + "WHERE ? = ?";
+
+        try (PreparedStatement statement = jdbConexion.prepareStatement(sqlScrip)) {
+
+            statement.setString(1, columna);
+            statement.setString(2, condicion);
+
+            ResultSet resultSet = statement.executeQuery();
+
+            /// obtener la lista de clientes
+            listaRutas = listarRutas(resultSet);
+
+            /// cerrando recursos.
+            statement.close();
+            resultSet.close();
+
+        } finally {
+            try {
+                /// cerando la conexion a la base de datos
+                conexion.cerrarConexion();
+            } catch (SQLException e) {
+                e.printStackTrace();
+
+            }
+        }
+
+        return listaRutas;
+    }
+
+
+
     public boolean newRuta(BufferedReader datosEnviados) throws JSONException, SQLException, IOException {
 
         StringBuilder sb = new StringBuilder();
@@ -110,15 +145,15 @@ public class RutaDAO {
             /// un objeto json para almacenar cada atributo de ruta
             JSONObject ruta = new JSONObject();
 
-            ruta.put("ID", resultSet.getString("id_ruta"));
-            ruta.put("Carretera", resultSet.getString("carretera"));
+            ruta.put("id_ruta", resultSet.getString("id_ruta"));
+            ruta.put("carretera", resultSet.getString("carretera"));
             // Obtener el estado del usuario
             int estadoInt = resultSet.getInt("estado");
             String estado = (estadoInt == 1) ? "activo" : "inactivo";
-            ruta.put("Estado", estado);
+            ruta.put("estado", estado);
 
-            ruta.put("Destino", resultSet.getString("id_destino"));
-            ruta.put("Limite", resultSet.getString("limite_carga"));
+            ruta.put("destino", resultSet.getString("id_destino"));
+            ruta.put("limite", resultSet.getString("limite_carga"));
 
         }
         return listaRutas;

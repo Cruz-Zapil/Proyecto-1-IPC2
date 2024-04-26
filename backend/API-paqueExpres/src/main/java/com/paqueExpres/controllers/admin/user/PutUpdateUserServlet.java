@@ -67,5 +67,7 @@ public class PutUpdateUserServlet extends HttpServlet {
 
         // Escribir el JSON de respuesta en el PrintWriter de HttpServletResponse
         response.getWriter().write(jsonResponse.toString());
+
+        
     }
 }

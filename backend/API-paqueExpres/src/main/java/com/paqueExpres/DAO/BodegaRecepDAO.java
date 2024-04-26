@@ -54,6 +54,40 @@ public class BodegaRecepDAO {
         return listaBodega;
     }
 
+
+    public JSONArray getBodega(String columna, String condicion) throws SQLException {
+
+        String sqlScrip = "SELECT * FROM " + nameTable + "WHERE ? = ?";
+
+        try (PreparedStatement statement = jdbConnection.prepareStatement(sqlScrip)) {
+
+            statement.setString(1, columna);
+            statement.setString(2, condicion);
+
+            ResultSet resultSet = statement.executeQuery();
+
+            /// obtener la lista de clientes
+            listaBodega = listarBodega(resultSet);
+
+            /// cerrando recursos.
+            statement.close();
+            resultSet.close();
+
+        } finally {
+            try {
+                /// cerando la conexion a la base de datos
+                conexion.cerrarConexion();
+            } catch (SQLException e) {
+                e.printStackTrace();
+
+            }
+        }
+
+        return listaBodega;
+    }
+
+
+
     public boolean newBodega(BufferedReader datosEnviados) throws IOException, JSONException, SQLException {
 
         StringBuilder sb = new StringBuilder();
@@ -105,15 +139,15 @@ public class BodegaRecepDAO {
             // Crear un JSONObject para cada usuario y añadirlo al JSONArray
             JSONObject bodega = new JSONObject();
 
-            bodega.put("ID", resultSet.getString("id_bodega"));
-            bodega.put("ID Recepcionista", resultSet.getString("id_recepcionista"));
-            bodega.put("ID Destino", resultSet.getString("id_destino"));
+            bodega.put("id_bodega", resultSet.getString("id_bodega"));
+            bodega.put("id_recepcionista", resultSet.getString("id_recepcionista"));
+            bodega.put("id_destino", resultSet.getString("id_destino"));
 
 
              // Obtener el estado del usuario
              int estadoInt = resultSet.getInt("estado");
              String estado = (estadoInt == 1) ? "activo" : "inactivo";
-             bodega.put("Estado", estado);
+             bodega.put("estado", estado);
 
             listaBodega.put(bodega);
         }

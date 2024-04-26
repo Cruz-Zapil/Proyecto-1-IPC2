@@ -145,12 +145,11 @@ public class ClienteDAO {
             // Crear un JSONObject para cada usuario y añadirlo al JSONArray
             JSONObject cliente = new JSONObject();
 
-            cliente.put("ID", resultSet.getString("id_cliente"));
-            cliente.put("Nombre", resultSet.getString("nombre"));
-            cliente.put("Apellido", resultSet.getString("apellido"));
-            cliente.put("Dirección", resultSet.getString("direccion"));
-            cliente.put("Género", resultSet.getString("genero"));
-            cliente.put("Teléfono", resultSet.getString("telefono"));
+            cliente.put("nombre", resultSet.getString("nombre"));
+            cliente.put("apellido", resultSet.getString("apellido"));
+            cliente.put("dirección", resultSet.getString("direccion"));
+            cliente.put("genero", resultSet.getString("genero"));
+            cliente.put("reléfono", resultSet.getString("telefono"));
 
             listaClientes.put(cliente);
         }

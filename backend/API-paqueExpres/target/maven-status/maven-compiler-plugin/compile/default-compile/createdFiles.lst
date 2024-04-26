@@ -1,5 +1,7 @@
+com/paqueExpres/controllers/recep/PutNewPackageServlet.class
 com/paqueExpres/DAO/RolDAO.class
 com/paqueExpres/util/ConexionDb.class
+com/paqueExpres/controllers/recep/PutUpdatePackageServlet.class
 com/paqueExpres/DAO/BodegaRecepDAO.class
 com/paqueExpres/DAO/UsuarioDAO.class
 com/paqueExpres/controllers/admin/user/PostUserServlet.class
@@ -12,7 +14,6 @@ com/paqueExpres/DAO/DetalleFactura.class
 com/paqueExpres/DAO/DestinoDAO.class
 com/paqueExpres/controllers/admin/rutas/PutUpdateRutaServlet.class
 com/paqueExpres/controllers/recep/GetQueryPackageServlet.class
-com/paqueExpres/controllers/admin/destino/GetQueryDestinoServlet.class
 com/paqueExpres/controllers/admin/rutas/PutNewRutaServlet.class
 com/paqueExpres/DAO/RegistroPuntoDAO.class
 com/paqueExpres/DAO/ClienteDAO.class
@@ -24,3 +25,4 @@ com/paqueExpres/controllers/admin/user/GetQueryUserServlet.class
 com/paqueExpres/controllers/recep/GetClienteServlet.class
 com/paqueExpres/controllers/admin/user/PutUpdateUserServlet.class
 com/paqueExpres/controllers/admin/rutas/PostQueryRutaServlet.class
+com/paqueExpres/controllers/recep/GetQueryDestinoServlet.class

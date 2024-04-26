@@ -1,5 +1,7 @@
 package com.paqueExpres.DAO;
 
+import java.io.BufferedReader;
+import java.io.IOException;
 import java.sql.*;
 
 import org.json.*;
@@ -8,27 +10,27 @@ import com.paqueExpres.util.ConexionDb;
 
 public class PackageDAO {
 
-    private Connection jdbcConexion;
+    private Connection jdbConexion;
     private JSONArray listPackage;
     private ConexionDb conexion;
     private final String nameTable = "paquete";
 
     public void conexionExterno(Connection jdbcConexion) {
-        this.jdbcConexion = jdbcConexion;
+        this.jdbConexion = jdbcConexion;
     }
 
     public void conectar() throws SQLException {
         /// obtner una instacia de conexion
         conexion = ConexionDb.obtenerInstancia("root", "VictorQuiej135-");
         // obtener conexion:
-        jdbcConexion = conexion.obtenerConexion();
+        jdbConexion = conexion.obtenerConexion();
     }
 
     public JSONArray getAllPackage() throws SQLException {
         String sqlSrcrip = "SELECT * FROM " + nameTable;
         listPackage = new JSONArray();
 
-        try (PreparedStatement statement = jdbcConexion.prepareStatement(sqlSrcrip);
+        try (PreparedStatement statement = jdbConexion.prepareStatement(sqlSrcrip);
                 ResultSet resultset = statement.executeQuery()) {
 
             /// Obtener la lista de paquetes
@@ -50,7 +52,7 @@ public class PackageDAO {
 
         String sqlScrip = "SELECT * FROM " + nameTable + "WHERE ? = ?";
 
-        try (PreparedStatement statement = jdbcConexion.prepareStatement(sqlScrip)) {
+        try (PreparedStatement statement = jdbConexion.prepareStatement(sqlScrip)) {
 
             statement.setString(1, columna);
             statement.setString(2, condicion);
@@ -77,6 +79,105 @@ public class PackageDAO {
         return listPackage;
     }
 
+    public boolean newPackage(BufferedReader datosEnviados) throws IOException, JSONException, SQLException {
+
+        StringBuilder sb = new StringBuilder();
+        String line;
+        int filasAfectadas = 0;
+
+        while ((line = datosEnviados.readLine()) != null) {
+            sb.append(line);
+        }
+
+        JSONObject jsonDatos = new JSONObject(sb.toString());
+
+        String sql = "INSERT INTO " + nameTable
+                + "(id_cliente ,id_destino, id_ruta, peso, descripcion, referencia_desino, estado, fecha_entrada,fecha_entrega ) VALUES (?,?,?,?,?,?,?,?,?)";
+
+        try (PreparedStatement statement = jdbConexion.prepareStatement(sql)) {
+
+            statement.setString(1, jsonDatos.getString("id_cliente"));
+            statement.setString(2, jsonDatos.getString("id_destino"));
+            statement.setString(3, jsonDatos.getString("id_ruta"));
+            statement.setString(4, jsonDatos.getString("peso"));
+            statement.setString(5, jsonDatos.getString("descripcion"));
+            statement.setString(6, jsonDatos.getString("referencia_destino"));
+            statement.setString(7, jsonDatos.getString("estado"));
+            statement.setString(8, jsonDatos.getString("fecha_entrada"));
+            statement.setString(9, jsonDatos.getString("fecha_entrega"));
+
+            filasAfectadas = statement.executeUpdate();
+
+            /// cerrando recursos:
+            statement.close();
+
+        } finally {
+            try {
+                conexion.cerrarConexion();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+
+        if (filasAfectadas > 0) {
+            return true;
+        }
+
+        return false;
+    }
+
+
+   /// update usuario
+
+   public boolean updatePackage(BufferedReader datosEviados) throws IOException, SQLException {
+
+    StringBuilder sb = new StringBuilder();
+    String line;
+    int filasAfectads = 0;
+
+    while ((line = datosEviados.readLine()) != null) {
+        sb.append(line);
+    }
+
+    JSONObject jsonData = new JSONObject(sb.toString());
+
+    String sql = "UPDATE " + nameTable
+            + " SET id_cliente = ?, id_destino = ?, id_ruta=?, peso=?, descripcion=?, referencia_destino=?, estado=?, fecha_entrada=?, fecha_entrega=?  WHERE id_paquete =? ";
+
+    try (PreparedStatement statement = jdbConexion.prepareStatement(sql)) {
+
+        statement.setString(1, jsonData.getString("id_cliente"));
+        statement.setString(2, jsonData.getString("id_destino"));
+        statement.setString(3, jsonData.getString("id_ruta"));
+        statement.setString(4, jsonData.getString("peso"));
+        statement.setString(5, jsonData.getString("descripcion"));
+        statement.setString(6, jsonData.getString("referencia_destino"));
+        statement.setString(7, jsonData.getString("estado"));
+        statement.setString(8, jsonData.getString("fecha_entrada"));
+        statement.setString(9, jsonData.getString("fecha_entrega"));
+
+        filasAfectads = statement.executeUpdate();
+
+        // cerrando recursos
+        statement.close();
+
+    } finally {
+        try {
+
+            conexion.cerrarConexion();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    if (filasAfectads > 0) {
+        return true;
+    }
+    return false;
+}
+
+
+
     private JSONArray listarPackge(ResultSet resultset) throws SQLException {
 
         /// crear un JSONArray para almacenar los paquetes
@@ -97,7 +198,7 @@ public class PackageDAO {
             paquete.put("referencia", resultset.getString("referencia_destino"));
             paquete.put("fechaEntrada", resultset.getString("fecha_entrada"));
             paquete.put("fechaEntrega", resultset.getString("fecha_entrega"));
-            
+
             paquete.put("estado", resultset.getString("estado"));
 
             listPackage.put(paquete);
