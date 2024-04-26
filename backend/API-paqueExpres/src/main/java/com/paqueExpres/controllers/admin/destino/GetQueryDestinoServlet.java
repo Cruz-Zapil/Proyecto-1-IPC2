@@ -27,8 +27,6 @@ public class GetQueryDestinoServlet extends HttpServlet {
         JSONObject jsonResponse = new JSONObject();
         JSONArray destinoArray = new JSONArray();
 
-        /// estado
-        boolean estado = false;
 
         try {
 
@@ -41,6 +39,7 @@ public class GetQueryDestinoServlet extends HttpServlet {
             if (destinoArray.length() !=0) {
                 jsonResponse.put("success", true);
                 jsonResponse.put("message", "El cliente existe");
+                jsonResponse.put("destinos",destinoArray);
            
             } else {
 

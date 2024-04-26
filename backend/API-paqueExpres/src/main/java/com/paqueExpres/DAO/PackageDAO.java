@@ -33,8 +33,47 @@ public class PackageDAO {
 
             /// Obtener la lista de paquetes
             listPackage = listarPackge(resultset);
+        } finally {
+            try {
+                /// cerando la conexion a la base de datos
+                conexion.cerrarConexion();
+            } catch (SQLException e) {
+                e.printStackTrace();
 
+            }
         }
+
+        return listPackage;
+    }
+
+    public JSONArray getPackage(String columna, String condicion) throws SQLException {
+
+        String sqlScrip = "SELECT * FROM " + nameTable + "WHERE ? = ?";
+
+        try (PreparedStatement statement = jdbcConexion.prepareStatement(sqlScrip)) {
+
+            statement.setString(1, columna);
+            statement.setString(2, condicion);
+
+            ResultSet resultSet = statement.executeQuery();
+
+            /// obtener la lista de clientes
+            listPackage = listarPackge(resultSet);
+
+            /// cerrando recursos.
+            statement.close();
+            resultSet.close();
+
+        } finally {
+            try {
+                /// cerando la conexion a la base de datos
+                conexion.cerrarConexion();
+            } catch (SQLException e) {
+                e.printStackTrace();
+
+            }
+        }
+
         return listPackage;
     }
 
@@ -49,16 +88,17 @@ public class PackageDAO {
             /// Crar un JSONObject para cada paquete y añadirlo al JSONArray
             JSONObject paquete = new JSONObject();
 
-            paquete.put("ID", resultset.getString("id_paquete"));
-            paquete.put("Cliente", resultset.getString("id_cliente"));
-            paquete.put("Destino", resultset.getString("id_destino"));
-            paquete.put("Ruta", resultset.getString("id_ruta"));
-            paquete.put("Peso", resultset.getString("peso"));
-            paquete.put("Descripcion", resultset.getString("descripcion"));
-            paquete.put("Referencia", resultset.getString("referencia_destino"));
-            paquete.put("Estado", resultset.getString("estado"));
-            paquete.put("Fecha Entrada", resultset.getString("fecha_entrada"));
-            paquete.put("Fecha Entrega", resultset.getString("fecha_entrega"));
+            paquete.put("id", resultset.getString("id_paquete"));
+            paquete.put("cliente", resultset.getString("id_cliente"));
+            paquete.put("destino", resultset.getString("id_destino"));
+            paquete.put("ruta", resultset.getString("id_ruta"));
+            paquete.put("peso", resultset.getString("peso"));
+            paquete.put("descripcion", resultset.getString("descripcion"));
+            paquete.put("referencia", resultset.getString("referencia_destino"));
+            paquete.put("fechaEntrada", resultset.getString("fecha_entrada"));
+            paquete.put("fechaEntrega", resultset.getString("fecha_entrega"));
+            
+            paquete.put("estado", resultset.getString("estado"));
 
             listPackage.put(paquete);
         }

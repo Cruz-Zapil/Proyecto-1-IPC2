@@ -1,15 +1,12 @@
 <div>
 
-
     <div class="container p-5 ">
 
-        <h3 class="titulo"> Hacer un Nuevo Envio </h3>
+        <h3 class="titulo p-3"> Hacer un Nuevo Envio </h3>
 
         <div class="container" id="container1">
 
-            <h4 class="subTitulo"> Datos del Cliente: </h4>
-
-
+            <h4 class="subTitulo p-3"> Datos del Cliente: </h4>
 
             <div class="imputs">
 
@@ -33,43 +30,120 @@
                         <button type="button" class="btn btn-primary btn-guardar"
                             (click)="mostrarSiguiente(1)">Siguente</button>
                     </div>
-
-
                 </div>
-
             </div>
         </div>
+
 
 
         <div class="container d-none" id="container2">
-            
-            <h4 class="subTitulo"> Paquetes a Enviar: </h4>
 
-        <div class="imputs">
-
+            <h4 class="subTitulo p-3"> Paquete a Enviar: </h4>
 
             <div class="row">
                 <div class="col-md-6">
-                    <input type="text" class="form-control text-area" placeholder="Destino: ">
+                    <button type="button" class="btn btn-primary btn-destino" data-bs-toggle="modal"
+                        data-bs-target="#destino"> Destino </button>
                 </div>
-                <div class="col-md-6">
-                    <input type="text" class="form-control text-area" placeholder="Ruta: ">
-                </div>
-            </div>
-            
-            <div class="row">
+
                 <div class="col-md-6">
                     <input type="number" class="form-control text-area" placeholder="Peso: ">
                 </div>
+
+
+            </div>
+
+            <div class="row">
+
+
                 <div class="col-md-6">
-                    <input type="text" class="form-control text-area" placeholder="Nit del Cliente">
+                    <input type="text" class="form-control text-area" placeholder="Descripcion: ">
                 </div>
+
+                <div class="col-md-6">
+                    <input type="number" class="form-control text-area" placeholder="Referencia de Destino (opcional) ">
+                </div>
+
             </div>
 
 
+            <div class="row">
+
+                <div class="col-md-6">
+                    Fecha y hora: {{fechaFormateada }}
+                </div>
+            </div>
+
+            <div class="row botonesMenu">
+
+                <div class="col-md-3">
+                    <button type="button" class="btn btn-secondary btn-regresar"
+                        (click)="regresarContenedor(2)">Regresar</button>
+                </div>
+                <div class="col-md-3">
+                    <button type="button" class="btn btn-secondary btn-cancel">Cancelar</button>
+                </div>
+                <div class="col-md-3">
+                    <button type="button" class="btn btn-secondary btn-otro">Agregar otro</button>
+                </div>
+                <div class="col-md-3">
+                    <button type="button" class="btn btn-primary btn-confirmar">Confirmar</button>
+                </div>
+
+            </div>
+
         </div>
+
+        <!-- seleccionar destino -->
+
+        <div>
+
+            <div class="modal fade" id="destino">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+
+                        <!-- Modal Header -->
+                        <div class="modal-header">
+                            <h4 class="modal-title">Elige el destino: </h4>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                        </div>
+
+                        <!-- Modal body -->
+                        <div class="modal-body">
+
+                            <table class="table table-dark table-hover" >
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Nombre </th>
+                                        <th>Dirección</th>
+                                        <th>Couta</th>
+                                    </tr>
+
+                                </thead>
+                                <tbody data-bs-toggle="tooltip" title="Elegir destino!">
+                                    <tr *ngFor="let destino of destinos">
+
+                                        <td>{{ destino.id }} </td>
+                                        <td>{{ destino.nombre }} </td>
+                                        <td>{{ destino.direccion}} </td>
+                                        <td>{{ destino.cuota}} </td>
+
+                                    </tr>
+                                </tbody>
+
+                            </table>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
 
 
         </div>
 
     </div>
+
+</div>

@@ -80,7 +80,7 @@ export class NewUserComponent {
     this.cleanImputs();
 
     this.newService.enviar_datos_user(userData).subscribe(
-      (response) => {
+      (response: {success: boolean; message: String}) => {
         if (response.success) {
           // Si es éxito, mostrar el mensaje de éxito
           this.result = response.message;
