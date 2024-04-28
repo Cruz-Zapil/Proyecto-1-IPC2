@@ -1,6 +1,5 @@
 package com.paqueExpres.controllers.operador.sesion;
 
-import java.io.BufferedReader;
 import java.io.IOException;
 import java.sql.SQLException;
 
@@ -20,10 +19,12 @@ import com.paqueExpres.DAO.PuntoControlDAO;
 public class GetUserPuntoServlet extends HttpServlet {
 
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        
-          // obtener datos enviados
-        BufferedReader reader = request.getReader();
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+
+        // Obtener los parámetros de consulta de la URL
+        String id_punto = request.getParameter("id_punto_control");
+        String id_user = request.getParameter("id_usuario");
 
         /// instaciar conexion
         PuntoControlDAO puntoControlDAO = new PuntoControlDAO();
@@ -36,14 +37,14 @@ public class GetUserPuntoServlet extends HttpServlet {
 
             /// establecer conexion
             puntoControlDAO.conectar();
-            listaDeDatos = puntoControlDAO.getPuntoControl(reader);
-            
+            listaDeDatos = puntoControlDAO.getPuntoControl(id_punto, id_user);
+
             /// verficar si existe el cliente:
-            if (listaDeDatos.length() !=0) {
+            if (listaDeDatos.length() != 0) {
                 jsonResponse.put("success", true);
                 jsonResponse.put("message", "El usuario existe");
-                jsonResponse.put("datos",listaDeDatos);
-           
+                jsonResponse.put("datos", listaDeDatos);
+
             } else {
 
                 jsonResponse.put("success", false);
@@ -66,8 +67,6 @@ public class GetUserPuntoServlet extends HttpServlet {
         // Escribir el JSON de respuesta en el PrintWriter de HttpServletResponse
         response.getWriter().write(jsonResponse.toString());
 
-
-
     }
-    
+
 }

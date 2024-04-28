@@ -1,20 +1,24 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output, output } from '@angular/core';
 import { PackageSalidaComponent } from './package-salida/package-salida.component';
 import { PackageEntradaComponent } from './package-entrada/package-entrada.component';
 import { RegistroPaqueteService } from './registro-paquete.service';
 import { FormsModule } from '@angular/forms';
-import { Router } from '@angular/router';
-import e, { response } from 'express';
 import { CommonModule } from '@angular/common';
-
 @Component({
   selector: 'app-operador',
   standalone: true,
-  imports: [CommonModule, PackageSalidaComponent, PackageEntradaComponent, FormsModule],
+  imports: [
+    CommonModule,
+    PackageSalidaComponent,
+    PackageEntradaComponent,
+    FormsModule,
+  ],
   templateUrl: './operador.component.html',
   styleUrl: './operador.component.css',
 })
 export class OperadorComponent {
+  /// compartir datos:
+
   componente: boolean[] = [
     true, /// registro de entrada
     false, // registro de salida
@@ -25,34 +29,38 @@ export class OperadorComponent {
   idPunto: String = '';
 
   /// datos recopilados en las peticiones:
-  result: String;
-  resultError: String;
+  errorLoggin: String = '';
+  messageResult: String = '';
+  resultError: String = '';
   datos: any[] = [];
   id_ruta: String = '';
   id_punto: String = '';
+  id_usuario: String = '';
+  logginTrue: boolean = false;
 
-  constructor(private peticiones: RegistroPaqueteService) {
-    this.result = '';
-    this.resultError = '';
-  }
+  constructor(private peticiones: RegistroPaqueteService) {}
 
-  sesionUser(): void {
-    let datosUser = {
-      id_punto_control: this.idPunto,
+  sesionUser() {
+    let datosUserE = {
       id_usuario: this.idUser,
+      id_punto_control: this.idPunto,
     };
 
-    this.peticiones.sesion(datosUser).subscribe(
+    this.peticiones.sesion(datosUserE).subscribe(
       (response: { message: String; success: boolean; datos: any[] }) => {
         /// analizar tipo de mensaje
 
         if (response.success) {
           /// se encontro el usuario
-          this.result = response.message;
+          this.messageResult = 'Bienvenido';
           this.datos = response.datos;
+          this.obtenerAtributos();
+          this.logginTrue = true;
         } else {
           /// no se encontro concidencias
-          this.result = response.message;
+          this.messageResult = response.message;
+          this.errorLoggin = 'Escriba bien los datos.';
+          this.limpiarImputs();
         }
       },
       (error: String) => {
@@ -61,9 +69,20 @@ export class OperadorComponent {
     );
   }
 
+  limpiarImputs(): void {
+    this.idUser = '';
+    this.idPunto = '';
+  }
+
   obtenerAtributos(): void {
-    let objeto = this.datos[0];
-    this.id_punto = objeto.id_punto;
-    this.id_ruta = objeto.id_ruta;
+    // Verificar si hay datos
+    if (this.datos && this.datos.length > 0) {
+      // Obtener el primer elemento del arreglo
+      let objeto = this.datos[0];
+      // Acceder a los atributos del objeto
+      this.id_punto = objeto.id_punto_control;
+      this.id_ruta = objeto.id_ruta;
+      this.id_usuario = objeto.id_usuario;
+    }
   }
 }

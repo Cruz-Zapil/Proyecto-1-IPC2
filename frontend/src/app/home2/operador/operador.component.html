@@ -28,6 +28,18 @@
 
     <div class="container p-4 pb-5 componente" id="componente">
 
+
+        <div class="container p-3 d-flex justify-content-between">
+            <h5> ID Usuario: {{id_usuario}}</h5>
+
+        </div>
+
+        <div class="container p-3 d-flex justify-content-between">
+            <h5> ID Punto Registro : {{id_punto}}</h5>
+
+        </div>
+
+
         @if (componente[0]) {
         <app-package-entrada></app-package-entrada>
         }
@@ -51,30 +63,53 @@
 
             <div class="modal-body">
 
-                <div class="container p-3">
+                <div class="containerLoggin p-3">
 
                     <h5> ID Usuario </h5>
                     <input type="text" [(ngModel)]="idUser" class="form-control m-4 text-area" placeholder="Usuario">
 
-
                     <h5> ID Punto Control </h5>
                     <input type="tel" [(ngModel)]="idPunto" class="form-control m-4  text-area"
-                        placeholder="Contraseña">
+                        placeholder="ID Punto a Cargo">
 
                     <div class="pie-pagina p-4 d-flex justify-content-between">
 
-                        <button type="button" (click)="sesionUser()" data-bs-dismiss="modal"
-                            class="btn boton-entrar">Verificar</button>
+                        <button type="button" (click)="sesionUser()" class="btn boton-entrar">Verificar</button>
 
-                        <button type="button " class="btn boton-cerrar " data-bs-dismiss="modal">Cerrar</button>
+                        <button type="button " class="btn boton-cerrar" (click)="limpiarImputs()"
+                            data-bs-dismiss="modal">Cerrar</button>
 
-                        <h5> {{id_ruta}}</h5>
-                        <h5> {{id_punto}}</h5>
-                        <h5> {{resultError}}</h5>
+
 
                     </div>
+                </div>
+
+                @if (logginTrue) {
+
+                <div class="container p-3 d-flex justify-content-between">
+                    <h5> {{messageResult}} : {{id_usuario}}</h5>
 
                 </div>
+
+                }
+                @if(errorLoggin !='') {
+
+                <div class="container p-3 d-flex justify-content-between">
+                    <h5> {{errorLoggin}}</h5>
+
+                </div>
+
+                }
+
+                @if(resultError !=''){
+
+                <div class="container p-3 d-flex justify-content-between">
+                    <h5> {{errorLoggin}}</h5>
+
+                </div>
+                }
+
+
             </div>
 
         </div>

@@ -8,7 +8,7 @@ export class SesionService {
 
   constructor(private http: HttpClient) { }
 
-  loggin(user_data: any){
+  loggin(user_data: any): any{
     return this.http.post<any>('http://localhost:8080/paqueExpres-1.0/inicio-sesion',user_data);
   }
 

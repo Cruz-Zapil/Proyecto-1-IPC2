@@ -54,30 +54,15 @@ public class PuntoControlDAO {
         return listaPuntoControl;
     }
 
-    public JSONArray getPuntoControl(BufferedReader datosEnviados) throws SQLException, IOException {
+    public JSONArray getPuntoControl(String id_punto, String id_user) throws SQLException, IOException {
 
-        StringBuilder sb = new StringBuilder();
-        String line;
-
-        while ((line = datosEnviados.readLine()) != null) {
-            sb.append(line);
-        }
-
-        JSONObject jsonDatos = new JSONObject(sb.toString());
-
-        String columna1 = jsonDatos.getString("columna1");
-        String condicion1 = jsonDatos.getString("condicion1");
-        String columna2 = jsonDatos.getString("columna2");
-        String condicion2 = jsonDatos.getString("condicion2");
-
-        String sqlScrip = "SELECT * FROM " + nameTable + "WHERE ? = ? AND ? = ? ";
+     
+        String sqlScrip = "SELECT * FROM " + nameTable + " WHERE id_punto_control = ?  AND  id_usuario = ? ";
 
         try (PreparedStatement statement = jdbConnection.prepareStatement(sqlScrip)) {
 
-            statement.setString(1, columna1);
-            statement.setString(2, condicion1);
-            statement.setString(3, columna2);
-            statement.setString(4, condicion2);
+            statement.setString(1, id_punto);
+            statement.setString(2, id_user);
 
             ResultSet resultSet = statement.executeQuery();
             listaPuntoControl = listarPuntoControl(resultSet);
@@ -152,12 +137,12 @@ public class PuntoControlDAO {
             // Crear un JSONObject para cada usuario y añadirlo al JSONArray
             JSONObject puntoControl = new JSONObject();
 
-            puntoControl.put("id_punto", resultSet.getString("id_punto_control"));
+            puntoControl.put("id_punto_control", resultSet.getString("id_punto_control"));
             puntoControl.put("id_ruta", resultSet.getString("id_ruta"));
             puntoControl.put("limite_paquete", resultSet.getString("limite_paquete"));
-            puntoControl.put("tarifa_local", resultSet.getString("moneda"));
-            puntoControl.put("id_tarifa_global", resultSet.getString("tarifa_local"));
-            puntoControl.put("id_usuario", resultSet.getString("id_tarifa_global"));
+            puntoControl.put("tarifa_local", resultSet.getString("tarifa_local"));
+            puntoControl.put("id_tarifa_global", resultSet.getString("id_tarifa_global"));
+            puntoControl.put("id_usuario", resultSet.getString("id_usuario"));
 
             listaPunto.put(puntoControl);
         }

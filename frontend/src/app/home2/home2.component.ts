@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { Router, RouterOutlet } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router, RouterOutlet } from '@angular/router';
 import { AdminComponent } from './admin/admin.component';
 import { RecepComponent } from './recep/recep.component';
 import { OperadorComponent } from './operador/operador.component';
@@ -11,12 +11,14 @@ import { OperadorComponent } from './operador/operador.component';
   styleUrl: './home2.component.css',
   imports: [RouterOutlet,AdminComponent, RecepComponent, OperadorComponent],
 })
-export class Home2Component {
+export class Home2Component  {
   title: String = '';
   nombreUser: String = '';
 
-  constructor(private router: Router){
 
+  constructor(private router: Router, private route: ActivatedRoute ){
+   
   }
-  
+ 
 }
+

@@ -11,7 +11,7 @@ import com.paqueExpres.util.ConexionDb;
 public class RegistroPuntoDAO {
 
     private Connection jdbConnection;
-    private JSONArray listaClientes;
+    private JSONArray listaRegistro;
     private ConexionDb conexion;
     private final String nameTable = "registro_punto_control";
 
@@ -26,16 +26,16 @@ public class RegistroPuntoDAO {
         jdbConnection = conexion.obtenerConexion();
     }
 
-    public JSONArray getAllCliente() throws SQLException {
+    public JSONArray getAllRegistro() throws SQLException {
         String sqlScript = "SELECT * FROM " + nameTable;
-        listaClientes = new JSONArray();
+        listaRegistro= new JSONArray();
 
         ///
         try (PreparedStatement statement = jdbConnection.prepareStatement(sqlScript);
                 ResultSet resultSet = statement.executeQuery()) {
 
             /// obtener la lista de clientes y retornarlo
-            listaClientes = listarClientes(resultSet);
+            listaRegistro = listarRegistro(resultSet);
 
             // cerrando recursos
             statement.close();
@@ -51,8 +51,41 @@ public class RegistroPuntoDAO {
             }
         }
 
-        return listaClientes;
+        return listaRegistro;
     }
+
+
+    public JSONArray getRegistroPunto(String comlumna, String condicion) throws SQLException, IOException {
+
+     
+        String sqlScrip = "SELECT * FROM " + nameTable + " WHERE ? = ? ";
+
+        try (PreparedStatement statement = jdbConnection.prepareStatement(sqlScrip)) {
+
+            statement.setString(1, comlumna);
+            statement.setString(2, condicion);
+
+            ResultSet resultSet = statement.executeQuery();
+            listaRegistro = listarRegistro(resultSet);
+
+
+            /// cerrando recursos.
+            statement.close();
+            resultSet.close();
+
+        } finally {
+            try {
+                /// cerando la conexion a la base de datos
+                conexion.cerrarConexion();
+            } catch (SQLException e) {
+                e.printStackTrace();
+
+            }
+        }
+
+        return listaRegistro;
+    }
+
 
     public boolean newRegistroPunto(BufferedReader datosEnviados) throws IOException, JSONException, SQLException {
 
@@ -67,7 +100,7 @@ public class RegistroPuntoDAO {
         JSONObject jsonDatos = new JSONObject(sb.toString());
 
         String sql = "INSERT INTO " + nameTable
-                + "(id_paquete, id_punto_control, id_ruta, horas_acumuladas, costo_generado, fecha_entrada, fecha_salida, id_usuario ) VALUES (?,?,?,?,?,?,?,?)";
+                + "(id_paquete, id_punto_control, id_ruta, horas_acumuladas, costo_generado, fecha_entrada, fecha_salida ) VALUES (?,?,?,?,?,?,?)";
 
         try (PreparedStatement statement = jdbConnection.prepareStatement(sql)) {
 
@@ -77,7 +110,6 @@ public class RegistroPuntoDAO {
             statement.setString(4, jsonDatos.getString("costo_generado"));
             statement.setString(5, jsonDatos.getString("fecha_entrada"));
             statement.setString(6, jsonDatos.getString("fecha_salida"));
-            statement.setString(7, jsonDatos.getString("id_usuario"));
 
             filasAfectadas = statement.executeUpdate();
 
@@ -115,7 +147,7 @@ public class RegistroPuntoDAO {
     JSONObject jsonData = new JSONObject(sb.toString());
 
     String sql = "UPDATE " + nameTable
-            + " SET id_paquer= ?, id_punto_control = ?, horas_acumuladas=?, costo_generado=?, fecha_entrada=?, fecha_salida=? WHERE id_usuario =? ";
+            + " SET id_paquete= ?, id_punto_control = ?, horas_acumuladas=?, costo_generado=?, fecha_entrada=?, fecha_salida=? WHERE id_registro_punto =? ";
 
 
             try (PreparedStatement statement = jdbConnection.prepareStatement(sql)) {
@@ -126,7 +158,7 @@ public class RegistroPuntoDAO {
                 statement.setString(4, jsonData.getString("costo_generado"));
                 statement.setString(5, jsonData.getString("fecha_entrada"));
                 statement.setString(6, jsonData.getString("fecha_salida"));
-                statement.setString(7, jsonData.getString("id_usuario"));
+                statement.setString(6,jsonData.getString("id_punto_registro"));
     
                 filasAfectadas = statement.executeUpdate();
     
@@ -149,7 +181,7 @@ public class RegistroPuntoDAO {
 }
 
 
-    private JSONArray listarClientes(ResultSet resultSet) throws SQLException, JSONException {
+    private JSONArray listarRegistro(ResultSet resultSet) throws SQLException, JSONException {
         // Crear un JSONArray para almacenar los usuarios
         JSONArray listaClientes = new JSONArray();
 
@@ -157,15 +189,13 @@ public class RegistroPuntoDAO {
             // Crear un JSONObject para cada usuario y añadirlo al JSONArray
             JSONObject rgPunto = new JSONObject();
 
-            rgPunto.put("ID", resultSet.getString("id_cliente"));
-            rgPunto.put("ID paquete", resultSet.getString("nombre"));
-            rgPunto.put("ID punto Control", resultSet.getString("apellido"));
-            rgPunto.put("ID ruta", resultSet.getString("direccion"));
-            rgPunto.put("Horas acumuladas", resultSet.getString("genero"));
-            rgPunto.put("Costo generado", resultSet.getString("telefono"));
-            rgPunto.put("Fecha entrada", resultSet.getString("telefono"));
-            rgPunto.put("Fecha salida", resultSet.getString("telefono"));
-            rgPunto.put("ID usuario", resultSet.getString("id_usuario"));
+            rgPunto.put("id_registro", resultSet.getString("id_registro_punto"));
+            rgPunto.put("id_paquete", resultSet.getString("id_paquete"));
+            rgPunto.put("id_punto_control", resultSet.getString("id_punto_control"));
+            rgPunto.put("horas_acumuladas", resultSet.getString("horas_acumuladas"));
+            rgPunto.put("costo_generado", resultSet.getString("costo_generado"));
+            rgPunto.put("fecha_entrada", resultSet.getString("fecha_entrada"));
+            rgPunto.put("fecha_salida", resultSet.getString("fecha_salida"));
 
             listaClientes.put(rgPunto);
         }

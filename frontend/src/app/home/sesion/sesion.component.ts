@@ -64,7 +64,7 @@ export class SesionComponent {
     };
 
     this.service_loggin.loggin(userDate).subscribe(
-      (response) => {
+      (response: { success: boolean; estado: boolean; messege: String; id_rol: number; nombre: String; }) => {
         /// analizar el tipo de mensaje.
         if (response.success) {
           // si es verdadero:
@@ -84,7 +84,7 @@ export class SesionComponent {
         }
       },
 
-      (error) => {
+      (error: String) => {
         this.errorResult = error;
       }
     );
