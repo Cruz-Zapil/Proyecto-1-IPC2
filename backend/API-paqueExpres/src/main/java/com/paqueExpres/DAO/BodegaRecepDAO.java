@@ -47,28 +47,42 @@ public class BodegaRecepDAO {
                 conexion.cerrarConexion();
             } catch (SQLException e) {
                 e.printStackTrace();
-                
+
             }
         }
 
         return listaBodega;
     }
 
+    public JSONArray getBodega(BufferedReader datosEnviados) throws SQLException, IOException {
 
-    public JSONArray getBodega(String columna, String condicion) throws SQLException {
+        StringBuilder sb = new StringBuilder();
+        String line;
 
-        String sqlScrip = "SELECT * FROM " + nameTable + "WHERE ? = ?";
+        while ((line = datosEnviados.readLine()) != null) {
+            sb.append(line);
+        }
+
+        JSONObject jsonDatos = new JSONObject(sb.toString());
+
+        String columna1 = jsonDatos.getString("columna1");
+        String condicion1 = jsonDatos.getString("condicion1");
+        String columna2 = jsonDatos.getString("columna2");
+        String condicion2 = jsonDatos.getString("condicion2");
+
+        String sqlScrip = "SELECT * FROM " + nameTable + " WHERE ? = ? AND ? = ? ";
 
         try (PreparedStatement statement = jdbConnection.prepareStatement(sqlScrip)) {
 
-            statement.setString(1, columna);
-            statement.setString(2, condicion);
+            statement.setString(1, columna1);
+            statement.setString(2, condicion1);
+            statement.setString(3, columna2);
+            statement.setString(4, condicion2);
 
             ResultSet resultSet = statement.executeQuery();
 
-            /// obtener la lista de clientes
             listaBodega = listarBodega(resultSet);
-
+            
             /// cerrando recursos.
             statement.close();
             resultSet.close();
@@ -85,8 +99,6 @@ public class BodegaRecepDAO {
 
         return listaBodega;
     }
-
-
 
     public boolean newBodega(BufferedReader datosEnviados) throws IOException, JSONException, SQLException {
 
@@ -130,7 +142,6 @@ public class BodegaRecepDAO {
         return false;
     }
 
-
     private JSONArray listarBodega(ResultSet resultSet) throws SQLException, JSONException {
         // Crear un JSONArray para almacenar los usuarios
         JSONArray listaBodega = new JSONArray();
@@ -143,11 +154,10 @@ public class BodegaRecepDAO {
             bodega.put("id_recepcionista", resultSet.getString("id_recepcionista"));
             bodega.put("id_destino", resultSet.getString("id_destino"));
 
-
-             // Obtener el estado del usuario
-             int estadoInt = resultSet.getInt("estado");
-             String estado = (estadoInt == 1) ? "activo" : "inactivo";
-             bodega.put("estado", estado);
+            // Obtener el estado del usuario
+            int estadoInt = resultSet.getInt("estado");
+            String estado = (estadoInt == 1) ? "activo" : "inactivo";
+            bodega.put("estado", estado);
 
             listaBodega.put(bodega);
         }

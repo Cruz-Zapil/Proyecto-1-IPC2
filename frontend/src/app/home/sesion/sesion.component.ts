@@ -1,4 +1,4 @@
-import { Component, Output, EventEmitter } from '@angular/core';
+import { Component} from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { SesionService } from './sesion.service';
 import { Router } from '@angular/router';
@@ -11,11 +11,11 @@ import { Router } from '@angular/router';
   styleUrl: './sesion.component.css',
 })
 export class SesionComponent {
-  @Output() datosEnvio = new EventEmitter<any>();
 
-  // datos recibidos en backEnd.
-  idRol: number = 0;
-  nombreUser: String = '';
+ // datos recibidos en backEnd.
+ idRol: number = 0;
+ nombreUser: String = '';
+ logginTrue: boolean = false;
 
   /// datos recopilados en front.
   userName: String = '';
@@ -25,24 +25,36 @@ export class SesionComponent {
 
   messageResult: String;
   errorLoggin: String;
-  ErrorResult: String;
+  errorResult: String;
 
   constructor(private service_loggin: SesionService, private router: Router) {
     this.errorLoggin = '';
     this.messageResult = '';
-    this.ErrorResult = '';
+    this.errorResult = '';
   }
 
-  /// enviar datos al componente padre:
-
-  enviarDatos() {
-    let datos = {
-      idRol: this.idRol,
-      nombreUser: this.nombreUser,
-    };
-
-    this.datosEnvio.emit(datos);
+  entrar(): void {
+    if (this.idRol == 1) {
+      this.router.navigate(['/home2/admin']);
+    } else if (this.idRol == 2) {
+      /// rol operador
+      this.router.navigate(['/home2/operador']);
+    } else if(this.idRol == 3) {
+      /// rel recepcionista
+      this.router.navigate(['/home2/recep']);
+    }
   }
+
+
+  limpiarImputs(): void {
+    this.idRol = 0;
+    this.userName = '';
+    this.nombreUser = '';
+    this.password = '';
+    this.errorLoggin = '';
+    this.messageResult = '';
+  }
+
 
   // metodo para usar el servicio
   newLoggin() {
@@ -56,28 +68,24 @@ export class SesionComponent {
         /// analizar el tipo de mensaje.
         if (response.success) {
           // si es verdadero:
-          if (response.Estado) {
+          if (response.estado) {
             this.messageResult = response.messege;
-            this.idRol = response.ID_Rol;
-            this.nombreUser = response.Nombre;
+            this.idRol = response.id_rol;
+            this.nombreUser = response.nombre;
+            this.logginTrue = true;
 
-            if (response.ID_Rol == 1) {
-              this.router.navigate(['/home2/admin']);
-            } else if (response.ID_Rol == 2) {
-              this.router.navigate(['/home2/operador']);
-            } else {
-              this.router.navigate(['/home2/recep']);
-            }
           } else {
             /// usuario inactivo =
           }
         } else {
-          this.errorLoggin = response.messege;
+             /// error de datos:
+             this.errorLoggin = response.messege;
+             this.logginTrue = false;
         }
       },
 
       (error) => {
-        this.ErrorResult = error;
+        this.errorResult = error;
       }
     );
   }

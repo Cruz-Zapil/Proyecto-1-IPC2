@@ -93,17 +93,17 @@ public class UsuarioDAO {
 
                     user.put("success", true);
                     user.put("messege", "Bienvenido");
-                    user.put("ID", resultSet.getString("id_usuario"));
-                    user.put("Nombre", resultSet.getString("nombre"));
-                    user.put("Apellido", resultSet.getString("apellido"));
-                    user.put("ID_Rol", resultSet.getString("id_rol"));
-                    user.put("Teléfono", resultSet.getString("telefono"));
-                    user.put("Edad", resultSet.getString("edad"));
+                    user.put("id", resultSet.getString("id_usuario"));
+                    user.put("nombre", resultSet.getString("nombre"));
+                    user.put("apellido", resultSet.getString("apellido"));
+                    user.put("id_rol", resultSet.getString("id_rol"));
+                    user.put("teléfono", resultSet.getString("telefono"));
+                    user.put("edad", resultSet.getString("edad")); 
 
                     // Obtener el estado del usuario
                     int estadoInt = resultSet.getInt("estado");
                     boolean estado = (estadoInt == 1) ? true : false;
-                    user.put("Estado", estado);
+                    user.put("estado", estado);
 
                 } else {
 
@@ -236,22 +236,22 @@ public class UsuarioDAO {
             // Crear un JSONObject para cada usuario y añadirlo al JSONArray
             JSONObject usuario = new JSONObject();
 
-            usuario.put("ID", resultSet.getString("id_usuario"));
-            usuario.put("Nombre", resultSet.getString("nombre"));
-            usuario.put("Apellido", resultSet.getString("apellido"));
-            usuario.put("Username", resultSet.getString("username"));
+            usuario.put("id", resultSet.getString("id_usuario"));
+            usuario.put("nombre", resultSet.getString("nombre"));
+            usuario.put("apellido", resultSet.getString("apellido"));
+            usuario.put("username", resultSet.getString("username"));
 
             // Obtener el estado del usuario
             int estadoInt = resultSet.getInt("estado");
             String estado = (estadoInt == 1) ? "activo" : "inactivo";
-            usuario.put("Estado", estado);
+            usuario.put("estado", estado);
 
             String tmpCol = tmp.getCol("nombre", resultSet.getString("id_rol"));
-            usuario.put("Rol", tmpCol);
+            usuario.put("rol", tmpCol);
 
-            usuario.put("Género", resultSet.getString("genero"));
-            usuario.put("Teléfono", resultSet.getString("telefono"));
-            usuario.put("Edad", resultSet.getString("edad"));
+            usuario.put("genero", resultSet.getString("genero"));
+            usuario.put("telefono", resultSet.getString("telefono"));
+            usuario.put("edad", resultSet.getString("edad"));
 
             listaClientes.put(usuario);
         }

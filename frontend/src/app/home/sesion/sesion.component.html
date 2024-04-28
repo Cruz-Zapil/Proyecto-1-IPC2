@@ -1,21 +1,70 @@
-<div>
+<!-- Modal loggin-->
+<div class="modal fade" id="inicioSesion" role="dialog">
 
-    <div class="container p-3">
+    <div class="modal-dialog">
 
-        <h5> Usuario </h5>
-        <input type="text" [(ngModel)]="userName" class="form-control m-4 text-area" placeholder="Usuario">
-             
+        <!-- Modal content-->
+        <div class="modal-content loggin">
+            <div class="encabezado p-3">
+                <h4 class="modal-title">Ingrese sus datos</h4>
+            </div>
 
-        <h5> Contraseña </h5>
-        <input type="password" [(ngModel)]="password" class="form-control m-4  text-area"  placeholder="Contraseña">
-             
-        <div class="pie-pagina p-4 d-flex justify-content-between">
-            <button type="button " data-bs-dismiss="modal" (click)="newLoggin()" class="btn boton-entrar">Entrar</button>
-            
-            <button type="button " class="btn boton-cerrar "  data-bs-dismiss="modal">Cerrar</button>
+            <div class="modal-body">
+
+
+                <div class="container p-3">
+
+                    <h5> Usuario </h5>
+                    <input type="text" [(ngModel)]="userName" class="form-control m-4 text-area" placeholder="Usuario">
+
+
+                    <h5> Contraseña </h5>
+                    <input type="password" [(ngModel)]="password" class="form-control m-4  text-area"
+                        placeholder="Contraseña">
+
+                    <div class="pie-pagina p-4 d-flex justify-content-between">
+                        <button type="button " data-bs-dismiss="modal" (click)="newLoggin()">Entrar</button>
+
+                        <button type="button " class="btn boton-cerrar " data-bs-dismiss="modal">Cerrar</button>
+
+                    </div>
+
+                </div>
+
+
+                @if (logginTrue) {
+
+                <div class="container p-3 d-flex justify-content-between">
+                    <h5> {{messageResult}} : {{nombreUser}}</h5>
+
+                    <button type="button" (click)="entrar()" class="btn boton-entrar"
+                        data-bs-dismiss="modal">Entrar</button>
+
+                </div>
+
+                }
+                @if(errorLoggin !='') {
+
+
+                <div class="container p-3 d-flex justify-content-between">
+                    <h5> {{errorLoggin}}</h5>
+
+                </div>
+
+                }
+
+                @if(errorResult !=''){
+
+                <div class="container p-3 d-flex justify-content-between">
+                    <h5> {{errorLoggin}}</h5>
+
+
+
+                </div>
+                }
+
+            </div>
 
         </div>
- 
     </div>
-
 </div>

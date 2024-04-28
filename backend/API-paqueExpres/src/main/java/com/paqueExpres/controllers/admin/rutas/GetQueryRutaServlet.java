@@ -20,8 +20,6 @@ public class GetQueryRutaServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         
-
-
         String columna = request.getParameter("columan");
         String condicion = request.getParameter("condicion");
         

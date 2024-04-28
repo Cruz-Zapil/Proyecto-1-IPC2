@@ -67,18 +67,17 @@ public class RegistroPuntoDAO {
         JSONObject jsonDatos = new JSONObject(sb.toString());
 
         String sql = "INSERT INTO " + nameTable
-                + "(id_paquete, id_punto_control, id_ruta, horas_acumuladas, costo_generado, fecha_entrada. fecha_salida, id_usuario ) VALUES (?,?,?,?,?,?,?,?)";
+                + "(id_paquete, id_punto_control, id_ruta, horas_acumuladas, costo_generado, fecha_entrada, fecha_salida, id_usuario ) VALUES (?,?,?,?,?,?,?,?)";
 
         try (PreparedStatement statement = jdbConnection.prepareStatement(sql)) {
 
             statement.setString(1, jsonDatos.getString("id_paquete"));
             statement.setString(2, jsonDatos.getString("id_punto_control"));
-            statement.setString(3, jsonDatos.getString("id_rua"));
-            statement.setString(4, jsonDatos.getString("horas_acumulada"));
-            statement.setString(5, jsonDatos.getString("costo_generado"));
-            statement.setString(6, jsonDatos.getString("fecha_entrada"));
-            statement.setString(7, jsonDatos.getString("fecha_salida"));
-            statement.setString(8, jsonDatos.getString("id_usuario"));
+            statement.setString(3, jsonDatos.getString("horas_acumulada"));
+            statement.setString(4, jsonDatos.getString("costo_generado"));
+            statement.setString(5, jsonDatos.getString("fecha_entrada"));
+            statement.setString(6, jsonDatos.getString("fecha_salida"));
+            statement.setString(7, jsonDatos.getString("id_usuario"));
 
             filasAfectadas = statement.executeUpdate();
 
@@ -100,6 +99,55 @@ public class RegistroPuntoDAO {
 
         return false;
     }
+
+  /// update usuario
+
+  public boolean updateRegistroPunto(BufferedReader datosEviados) throws IOException, SQLException {
+
+    StringBuilder sb = new StringBuilder();
+    String line;
+    int filasAfectadas = 0;
+
+    while ((line = datosEviados.readLine()) != null) {
+        sb.append(line);
+    }
+
+    JSONObject jsonData = new JSONObject(sb.toString());
+
+    String sql = "UPDATE " + nameTable
+            + " SET id_paquer= ?, id_punto_control = ?, horas_acumuladas=?, costo_generado=?, fecha_entrada=?, fecha_salida=? WHERE id_usuario =? ";
+
+
+            try (PreparedStatement statement = jdbConnection.prepareStatement(sql)) {
+
+                statement.setString(1, jsonData.getString("id_paquete"));
+                statement.setString(2, jsonData.getString("id_punto_control"));
+                statement.setString(3, jsonData.getString("horas_acumulada"));
+                statement.setString(4, jsonData.getString("costo_generado"));
+                statement.setString(5, jsonData.getString("fecha_entrada"));
+                statement.setString(6, jsonData.getString("fecha_salida"));
+                statement.setString(7, jsonData.getString("id_usuario"));
+    
+                filasAfectadas = statement.executeUpdate();
+    
+                /// cerrando recursos:
+                statement.close();
+    
+            } finally {
+                try {
+                    conexion.cerrarConexion();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+    
+            }
+
+    if (filasAfectadas > 0) {
+        return true;
+    }
+    return false;
+}
+
 
     private JSONArray listarClientes(ResultSet resultSet) throws SQLException, JSONException {
         // Crear un JSONArray para almacenar los usuarios

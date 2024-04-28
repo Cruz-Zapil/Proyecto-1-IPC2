@@ -138,7 +138,7 @@ export class GenerateInvoiceComponent {
       }
     );
   }
-
+/*
   setNewPackage(): void {
     this.peticiones.setPackage().subscribe((response) => {
       if (response.success) {
@@ -146,6 +146,6 @@ export class GenerateInvoiceComponent {
       }
     });
   }
-
+*/
   checkClient() {}
 }
