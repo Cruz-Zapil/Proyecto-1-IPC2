@@ -1,1 +1,82 @@
-<p>operador works!</p>
+<div>
+
+    <!-- barra de menu:  -->
+    <div class="container p-2">
+
+        <ul class="nav nav-tabs">
+
+            <li class="nav-item">
+                <a class="nav-link" (click)="componente[0]=true; componente[1]=false" type="button">Entrada</a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" (click)="componente[1]=true; componente[0]=false" type="button">Salida</a>
+            </li>
+            <li class="nav-item ms-auto"> <!-- 'ms-auto' para mover este elemento hacia la derecha -->
+                <a class="nav-link sesion" data-bs-toggle="modal" href="#inicioSesion" role="button">Inicio de
+                    Sesion</a>
+            </li>
+
+        </ul>
+
+
+    </div>
+
+
+    <!-- cuerpo del componente: -->
+
+
+    <div class="container p-4 pb-5 componente" id="componente">
+
+        @if (componente[0]) {
+        <app-package-entrada></app-package-entrada>
+        }
+        @else if (componente[1]) {
+        <app-package-salida></app-package-salida>
+        }
+
+    </div>
+
+</div>
+
+<div class="modal fade" id="inicioSesion">
+
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content loggin">
+            <div class="encabezado p-3">
+                <h4 class="modal-title">Ingrese sus datos</h4>
+            </div>
+
+            <div class="modal-body">
+
+                <div class="container p-3">
+
+                    <h5> ID Usuario </h5>
+                    <input type="text" [(ngModel)]="idUser" class="form-control m-4 text-area" placeholder="Usuario">
+
+
+                    <h5> ID Punto Control </h5>
+                    <input type="tel" [(ngModel)]="idPunto" class="form-control m-4  text-area"
+                        placeholder="Contraseña">
+
+                    <div class="pie-pagina p-4 d-flex justify-content-between">
+
+                        <button type="button" (click)="sesionUser()" data-bs-dismiss="modal"
+                            class="btn boton-entrar">Verificar</button>
+
+                        <button type="button " class="btn boton-cerrar " data-bs-dismiss="modal">Cerrar</button>
+
+                        <h5> {{id_ruta}}</h5>
+                        <h5> {{id_punto}}</h5>
+                        <h5> {{resultError}}</h5>
+
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

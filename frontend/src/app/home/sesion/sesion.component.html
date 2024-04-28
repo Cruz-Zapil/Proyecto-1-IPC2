@@ -23,9 +23,9 @@
                         placeholder="Contraseña">
 
                     <div class="pie-pagina p-4 d-flex justify-content-between">
-                        <button type="button " data-bs-dismiss="modal" (click)="newLoggin()">Entrar</button>
+                        <button type="button " class="btn boton-entrar" (click)="newLoggin()">Entrar</button>
 
-                        <button type="button " class="btn boton-cerrar " data-bs-dismiss="modal">Cerrar</button>
+                        <button type="button " class="btn boton-cerrar " (click)="limpiarImputs();" data-bs-dismiss="modal">Cerrar</button>
 
                     </div>
 
@@ -44,7 +44,6 @@
 
                 }
                 @if(errorLoggin !='') {
-
 
                 <div class="container p-3 d-flex justify-content-between">
                     <h5> {{errorLoggin}}</h5>

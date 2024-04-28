@@ -1,0 +1,49 @@
+.nav-link {
+  color: whitesmoke;
+}
+
+.sesion {
+  border: 2px solid rgb(52, 73, 94);
+  background-color: #ffdab9; /* Un tono de beige */
+  color: rgb(23, 32, 42);
+}
+
+
+.componente {
+  /*background-color: whitesmoke;*/
+
+  background-color: rgb(135, 206, 235);
+  color: rgb(70, 70, 70);
+  margin-left: 5%; /* Margen izquierdo del 10% del ancho de la ventana */
+  margin-right: 5%; /* Margen derecho del 10% del ancho de la ventana */
+  max-width: 90%; /* Ancho máximo del contenedor del 80% del ancho de la ventana */
+  border: 3px solid whitesmoke;
+  border-radius: 5px;
+}
+
+.loggin {
+  background-color: rgb(23, 32, 42);
+  color: whitesmoke;
+}
+
+.boton-entrar {
+  width: 150px;
+  border: 1px solid greenyellow;
+  color: greenyellow;
+}
+.boton-entrar:hover {
+  border-color: green;
+  background-color: greenyellow;
+  color: rgb(23, 32, 42);
+}
+
+.boton-cerrar {
+  width: 150px;
+  border: 1px solid red;
+  color: red;
+}
+.boton-cerrar:hover {
+  border-color: red;
+  background-color: red;
+  color: rgb(23, 32, 42);
+}
