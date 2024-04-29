@@ -30,6 +30,7 @@
 /home/CruzZapil/Escritorio/IPC2/Proyecto-1-IPC2/backend/API-paqueExpres/src/main/java/com/paqueExpres/controllers/recep/GetQueryPackageServlet.java
 /home/CruzZapil/Escritorio/IPC2/Proyecto-1-IPC2/backend/API-paqueExpres/src/main/java/com/paqueExpres/controllers/recep/PutNewClientServlet.java
 /home/CruzZapil/Escritorio/IPC2/Proyecto-1-IPC2/backend/API-paqueExpres/src/main/java/com/paqueExpres/controllers/recep/PutNewDetalleFacturaServlet.java
+/home/CruzZapil/Escritorio/IPC2/Proyecto-1-IPC2/backend/API-paqueExpres/src/main/java/com/paqueExpres/controllers/recep/PutNewFacturaServlet.java
 /home/CruzZapil/Escritorio/IPC2/Proyecto-1-IPC2/backend/API-paqueExpres/src/main/java/com/paqueExpres/controllers/recep/PutNewPackageServlet.java
 /home/CruzZapil/Escritorio/IPC2/Proyecto-1-IPC2/backend/API-paqueExpres/src/main/java/com/paqueExpres/controllers/recep/PutNewRegistroPuntoServlet.java
 /home/CruzZapil/Escritorio/IPC2/Proyecto-1-IPC2/backend/API-paqueExpres/src/main/java/com/paqueExpres/controllers/recep/PutUpdatePackageServlet.java

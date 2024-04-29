@@ -4,6 +4,7 @@ com/paqueExpres/DAO/RolDAO.class
 com/paqueExpres/util/ConexionDb.class
 com/paqueExpres/controllers/recep/PutUpdatePackageServlet.class
 com/paqueExpres/controllers/operador/GetPackageRegistro.class
+com/paqueExpres/controllers/recep/PutNewFacturaServlet.class
 com/paqueExpres/DAO/BodegaRecepDAO.class
 com/paqueExpres/controllers/admin/user/PostLogginUserServlet.class
 com/paqueExpres/DAO/UsuarioDAO.class
