@@ -21,7 +21,7 @@ public class GetQueryPackageServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         
-        String columna = request.getParameter("columan");
+
         String condicion = request.getParameter("condicion");
         
         // instanciar conexion
@@ -36,14 +36,14 @@ public class GetQueryPackageServlet extends HttpServlet {
             // conexion 
             packageDAO.conectar();
 
-            packageArray = packageDAO.getPackage(columna,condicion);
+            packageArray = packageDAO.getPackage(condicion);
 
             if (packageArray.length() != 0) {
-                jsonResponse.put("succes",true);
+                jsonResponse.put("success",true);
                 jsonResponse.put("message","Si hay paquetes: ");
                 jsonResponse.put("package", packageArray);           
             } else {
-                jsonResponse.put("succes",false);
+                jsonResponse.put("success",false);
                 jsonResponse.put("message","No se encontro ningun registro");
 
             }

@@ -1,9 +1,10 @@
+com/paqueExpres/controllers/operador/PutUpdateRegistro.class
 com/paqueExpres/controllers/recep/PutNewPackageServlet.class
 com/paqueExpres/DAO/RolDAO.class
 com/paqueExpres/util/ConexionDb.class
 com/paqueExpres/controllers/recep/PutUpdatePackageServlet.class
+com/paqueExpres/controllers/operador/GetPackageRegistro.class
 com/paqueExpres/DAO/BodegaRecepDAO.class
-com/paqueExpres/controllers/operador/sesion/GetRegistroPunto.class
 com/paqueExpres/controllers/admin/user/PostLogginUserServlet.class
 com/paqueExpres/DAO/UsuarioDAO.class
 com/paqueExpres/controllers/recep/PutUpdateRegistroPServlet.class
@@ -18,10 +19,11 @@ com/paqueExpres/controllers/admin/rutas/PutUpdateRutaServlet.class
 com/paqueExpres/controllers/recep/GetQueryPackageServlet.class
 com/paqueExpres/controllers/admin/rutas/PutNewRutaServlet.class
 com/paqueExpres/controllers/recep/sesion/GetUserBodegaServlet.class
+com/paqueExpres/controllers/operador/GetRegistroPunto.class
 com/paqueExpres/DAO/RegistroPuntoDAO.class
 com/paqueExpres/DAO/ClienteDAO.class
 com/paqueExpres/controllers/admin/rutas/GetQueryRutaServlet.class
-com/paqueExpres/controllers/operador/sesion/PutNewRegistroPunto.class
+com/paqueExpres/controllers/operador/PutNewRegistroPunto.class
 com/paqueExpres/controllers/recep/PutNewRegistroPuntoServlet.class
 com/paqueExpres/controllers/recep/PutNewClientServlet.class
 com/paqueExpres/controllers/admin/user/PutNewUSerServlet.class
@@ -30,7 +32,6 @@ com/paqueExpres/DAO/PuntoControlDAO.class
 com/paqueExpres/controllers/operador/sesion/GetUserPuntoServlet.class
 com/paqueExpres/controllers/admin/user/GetQueryUserServlet.class
 com/paqueExpres/controllers/recep/GetClienteServlet.class
-com/paqueExpres/controllers/operador/sesion/PutUpdateRegistro.class
 com/paqueExpres/controllers/recep/PutNewDetalleFacturaServlet.class
 com/paqueExpres/controllers/admin/user/PutUpdateUserServlet.class
 com/paqueExpres/controllers/admin/rutas/PostQueryRutaServlet.class

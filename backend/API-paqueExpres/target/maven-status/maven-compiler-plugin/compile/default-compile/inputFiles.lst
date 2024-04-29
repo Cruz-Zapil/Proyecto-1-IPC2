@@ -20,10 +20,11 @@
 /home/CruzZapil/Escritorio/IPC2/Proyecto-1-IPC2/backend/API-paqueExpres/src/main/java/com/paqueExpres/controllers/admin/user/PostLogginUserServlet.java
 /home/CruzZapil/Escritorio/IPC2/Proyecto-1-IPC2/backend/API-paqueExpres/src/main/java/com/paqueExpres/controllers/admin/user/PutNewUSerServlet.java
 /home/CruzZapil/Escritorio/IPC2/Proyecto-1-IPC2/backend/API-paqueExpres/src/main/java/com/paqueExpres/controllers/admin/user/PutUpdateUserServlet.java
-/home/CruzZapil/Escritorio/IPC2/Proyecto-1-IPC2/backend/API-paqueExpres/src/main/java/com/paqueExpres/controllers/operador/sesion/GetRegistroPunto.java
+/home/CruzZapil/Escritorio/IPC2/Proyecto-1-IPC2/backend/API-paqueExpres/src/main/java/com/paqueExpres/controllers/operador/GetPackageRegistro.java
+/home/CruzZapil/Escritorio/IPC2/Proyecto-1-IPC2/backend/API-paqueExpres/src/main/java/com/paqueExpres/controllers/operador/GetRegistroPunto.java
+/home/CruzZapil/Escritorio/IPC2/Proyecto-1-IPC2/backend/API-paqueExpres/src/main/java/com/paqueExpres/controllers/operador/PutNewRegistroPunto.java
+/home/CruzZapil/Escritorio/IPC2/Proyecto-1-IPC2/backend/API-paqueExpres/src/main/java/com/paqueExpres/controllers/operador/PutUpdateRegistro.java
 /home/CruzZapil/Escritorio/IPC2/Proyecto-1-IPC2/backend/API-paqueExpres/src/main/java/com/paqueExpres/controllers/operador/sesion/GetUserPuntoServlet.java
-/home/CruzZapil/Escritorio/IPC2/Proyecto-1-IPC2/backend/API-paqueExpres/src/main/java/com/paqueExpres/controllers/operador/sesion/PutNewRegistroPunto.java
-/home/CruzZapil/Escritorio/IPC2/Proyecto-1-IPC2/backend/API-paqueExpres/src/main/java/com/paqueExpres/controllers/operador/sesion/PutUpdateRegistro.java
 /home/CruzZapil/Escritorio/IPC2/Proyecto-1-IPC2/backend/API-paqueExpres/src/main/java/com/paqueExpres/controllers/recep/GetClienteServlet.java
 /home/CruzZapil/Escritorio/IPC2/Proyecto-1-IPC2/backend/API-paqueExpres/src/main/java/com/paqueExpres/controllers/recep/GetQueryDestinoServlet.java
 /home/CruzZapil/Escritorio/IPC2/Proyecto-1-IPC2/backend/API-paqueExpres/src/main/java/com/paqueExpres/controllers/recep/GetQueryPackageServlet.java

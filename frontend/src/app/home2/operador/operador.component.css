@@ -66,3 +66,60 @@
   background-color: red;
   color: rgb(23, 32, 42);
 }
+
+
+.btn-cancelar:hover {
+  background-color: red;
+  color: white;
+  border-radius: 5px;
+  border-color: black;
+}
+.btn-cancelar {
+  margin-left: 75px;
+  width: 200px;
+  border-radius: 5px;
+  background: none;
+  border-color: red;
+  color: red;
+}
+
+.btn-guardar {
+  width: 125px;
+  border-radius: 5px;
+  border-color: green;
+  background: none;
+  color: green;
+}
+
+.btn-guardar:hover {
+  border-radius: 5px;
+  border-color: black;
+  color: black;
+  background-color: greenyellow;
+}
+  
+
+.containerRegistro {
+  background-color: white;
+  max-width: 900px;
+  min-width: 400px;
+  border: 3px solid rgb(23, 32, 42);
+  border-radius: 10px;
+  color: rgb(23, 32, 42);
+}
+
+.titulo {
+  display: flex; /* Usamos display flex para alinear el contenido */
+  justify-content: center; /* Centramos horizontalmente */
+  align-items: center; /* Centramos verticalmente */
+}
+
+
+.row {
+display: flex;
+justify-content: center; /* Centrar elementos horizontalmente */
+}
+
+.col-md-6 {
+margin-bottom: 30px; /* Añadir un margen inferior opcional para separar las filas */
+}

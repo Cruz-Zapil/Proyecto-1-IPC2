@@ -30,21 +30,109 @@
 
 
         <div class="container p-3 d-flex justify-content-between">
-            <h5> ID Usuario: {{id_usuario}}</h5>
-
+            <h6>ID Usuario: {{id_usuario}}</h6>
+            <h6>ID Punto Control: {{id_punto}}</h6>
+            <h6>Paquete ligado a Ruta: {{paqueteRuta}}</h6>
         </div>
 
-        <div class="container p-3 d-flex justify-content-between">
-            <h5> ID Punto Registro : {{id_punto}}</h5>
-
-        </div>
 
 
         @if (componente[0]) {
-        <app-package-entrada></app-package-entrada>
+
+        <div class="container containerRegistro p-5">
+
+
+            <h3 class="titulo"> Registrar Entrada de Paquete. </h3>
+
+
+            <div class="imputs">
+
+                <div class="row">
+
+                    <div class="col-md-6">
+                        <label for="Id_paquete">ID del Paquete: </label>
+                        <input type="text" [(ngModel)]="idPackage" class="form-control text-area"
+                            placeholder="ID del paquete">
+
+                    </div>
+
+                    <div class="col-md-6">
+                        <label for="fechaHora">Fecha y hora de entrada</label>
+                        <input type="datetime-local" [(ngModel)]="fechaEntrada" id="fechaHora" name="fechaHora"
+                            class="form-control text-area">
+
+                    </div>
+
+
+                </div>
+
+
+                <div class="row">
+
+                    <div class="col-md-6">
+                        <button type="button" class="btn btn-primary btn-guardar" (click)="getPackage()">Guardar
+                        </button>
+                    </div>
+                    <div class="col-md-6">
+                        <button type="button" class="btn btn-secondary btn-cancelar">Cancelar</button>
+                    </div>
+
+                </div>
+                {{mensajeUpdate}}
+            </div>
+
+
+        </div>
+
         }
         @else if (componente[1]) {
-        <app-package-salida></app-package-salida>
+
+
+        <div class="container containerRegistro p-5">
+
+
+            <h3 class="titulo"> Registrar Salida de Paquete. </h3>
+
+            <div class="imputs">
+
+                <div class="row">
+
+                    <div class="col-md-6">
+                        <label for="Id_paquete">ID del Paquete: </label>
+                        <input type="text" [(ngModel)]="idPackage" class="form-control text-area"
+                            placeholder="ID del paquete">
+
+                    </div>
+
+                    <div class="col-md-6">
+                        <label for="fechaHora">Fecha y hora de salida</label>
+                        <input type="datetime-local" [(ngModel)]="fechaSalida" id="fechaHora" name="fechaHora"
+                            class="form-control text-area">
+
+                    </div>
+
+
+                </div>
+
+
+                <div class="row">
+
+                    <div class="col-md-6">
+                        <button type="button" class="btn btn-primary btn-guardar" (click)="getPackageRegistro()">Guardar
+                        </button>
+
+                    </div>
+
+                    <div class="col-md-6">
+                        <button type="button" class="btn btn-secondary  btn-cancelar ">Cancelar</button>
+                    </div>
+
+                </div>
+
+                {{mensajeUpdate}}
+            </div>
+        </div>
+
         }
 
     </div>

@@ -48,14 +48,13 @@ public class PackageDAO {
         return listPackage;
     }
 
-    public JSONArray getPackage(String columna, String condicion) throws SQLException {
+    public JSONArray getPackage(String condicion) throws SQLException {
 
-        String sqlScrip = "SELECT * FROM " + nameTable + "WHERE ? = ?";
+        String sqlScrip = "SELECT * FROM " + nameTable + " WHERE id_paquete = ?";
 
         try (PreparedStatement statement = jdbConexion.prepareStatement(sqlScrip)) {
 
-            statement.setString(1, columna);
-            statement.setString(2, condicion);
+            statement.setString(1, condicion);
 
             ResultSet resultSet = statement.executeQuery();
 
@@ -126,57 +125,54 @@ public class PackageDAO {
         return false;
     }
 
+    /// update usuario
 
-   /// update usuario
+    public boolean updatePackage(BufferedReader datosEviados) throws IOException, SQLException {
 
-   public boolean updatePackage(BufferedReader datosEviados) throws IOException, SQLException {
+        StringBuilder sb = new StringBuilder();
+        String line;
+        int filasAfectads = 0;
 
-    StringBuilder sb = new StringBuilder();
-    String line;
-    int filasAfectads = 0;
-
-    while ((line = datosEviados.readLine()) != null) {
-        sb.append(line);
-    }
-
-    JSONObject jsonData = new JSONObject(sb.toString());
-
-    String sql = "UPDATE " + nameTable
-            + " SET id_cliente = ?, id_destino = ?, id_ruta=?, peso=?, descripcion=?, referencia_destino=?, estado=?, fecha_entrada=?, fecha_entrega=?  WHERE id_paquete =? ";
-
-    try (PreparedStatement statement = jdbConexion.prepareStatement(sql)) {
-
-        statement.setString(1, jsonData.getString("id_cliente"));
-        statement.setString(2, jsonData.getString("id_destino"));
-        statement.setString(3, jsonData.getString("id_ruta"));
-        statement.setString(4, jsonData.getString("peso"));
-        statement.setString(5, jsonData.getString("descripcion"));
-        statement.setString(6, jsonData.getString("referencia_destino"));
-        statement.setString(7, jsonData.getString("estado"));
-        statement.setString(8, jsonData.getString("fecha_entrada"));
-        statement.setString(9, jsonData.getString("fecha_entrega"));
-
-        filasAfectads = statement.executeUpdate();
-
-        // cerrando recursos
-        statement.close();
-
-    } finally {
-        try {
-
-            conexion.cerrarConexion();
-        } catch (SQLException e) {
-            e.printStackTrace();
+        while ((line = datosEviados.readLine()) != null) {
+            sb.append(line);
         }
+
+        JSONObject jsonData = new JSONObject(sb.toString());
+
+        String sql = "UPDATE " + nameTable
+                + " SET id_cliente = ?, id_destino = ?, id_ruta=?, peso=?, descripcion=?, referencia_destino=?, estado=?, fecha_entrada=?, fecha_entrega=?  WHERE id_paquete =? ";
+
+        try (PreparedStatement statement = jdbConexion.prepareStatement(sql)) {
+
+            statement.setString(1, jsonData.getString("id_cliente"));
+            statement.setString(2, jsonData.getString("id_destino"));
+            statement.setString(3, jsonData.getString("id_ruta"));
+            statement.setString(4, jsonData.getString("peso"));
+            statement.setString(5, jsonData.getString("descripcion"));
+            statement.setString(6, jsonData.getString("referencia_destino"));
+            statement.setString(7, jsonData.getString("estado"));
+            statement.setString(8, jsonData.getString("fecha_entrada"));
+            statement.setString(9, jsonData.getString("fecha_entrega"));
+
+            filasAfectads = statement.executeUpdate();
+
+            // cerrando recursos
+            statement.close();
+
+        } finally {
+            try {
+
+                conexion.cerrarConexion();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+
+        if (filasAfectads > 0) {
+            return true;
+        }
+        return false;
     }
-
-    if (filasAfectads > 0) {
-        return true;
-    }
-    return false;
-}
-
-
 
     private JSONArray listarPackge(ResultSet resultset) throws SQLException {
 
@@ -189,17 +185,20 @@ public class PackageDAO {
             /// Crar un JSONObject para cada paquete y añadirlo al JSONArray
             JSONObject paquete = new JSONObject();
 
-            paquete.put("id", resultset.getString("id_paquete"));
-            paquete.put("cliente", resultset.getString("id_cliente"));
-            paquete.put("destino", resultset.getString("id_destino"));
-            paquete.put("ruta", resultset.getString("id_ruta"));
+            paquete.put("id_paquete", resultset.getString("id_paquete"));
+            paquete.put("id_cliente", resultset.getString("id_cliente"));
+            paquete.put("id_destino", resultset.getString("id_destino"));
+            paquete.put("id_ruta", resultset.getString("id_ruta"));
             paquete.put("peso", resultset.getString("peso"));
             paquete.put("descripcion", resultset.getString("descripcion"));
             paquete.put("referencia", resultset.getString("referencia_destino"));
-            paquete.put("fechaEntrada", resultset.getString("fecha_entrada"));
-            paquete.put("fechaEntrega", resultset.getString("fecha_entrega"));
+            paquete.put("fecha_entrada", resultset.getString("fecha_entrada"));
+            paquete.put("fecha_salida", resultset.getString("fecha_entrega"));
 
-            paquete.put("estado", resultset.getString("estado"));
+            // Obtener el estado del usuario
+            int estadoInt = resultset.getInt("estado");
+            String estado = (estadoInt == 1) ? "activo" : "inactivo";
+            paquete.put("estado", estado);
 
             listPackage.put(paquete);
         }
