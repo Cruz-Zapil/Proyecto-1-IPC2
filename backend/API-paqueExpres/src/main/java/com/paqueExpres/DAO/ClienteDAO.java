@@ -103,7 +103,7 @@ public class ClienteDAO {
 
         boolean tmpEstado=false;
 
-        String sql = "SELECT id_cliente FROM " + nameTable + " WHERE id_cliene =?";
+        String sql = "SELECT id_cliente FROM " + nameTable + " WHERE id_cliente =?";
         try (PreparedStatement statement = jdbConnection.prepareStatement(sql)) {
             statement.setString(1, idCliente);
 

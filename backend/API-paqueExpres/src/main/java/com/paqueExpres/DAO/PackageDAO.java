@@ -91,19 +91,17 @@ public class PackageDAO {
         JSONObject jsonDatos = new JSONObject(sb.toString());
 
         String sql = "INSERT INTO " + nameTable
-                + "(id_cliente ,id_destino, id_ruta, peso, descripcion, referencia_desino, estado, fecha_entrada,fecha_entrega ) VALUES (?,?,?,?,?,?,?,?,?)";
+                + "(id_cliente ,id_destino, peso, descripcion, referencia_destino, estado, fecha_entrada ) VALUES (?,?,?,?,?,?,?)";
 
         try (PreparedStatement statement = jdbConexion.prepareStatement(sql)) {
 
             statement.setString(1, jsonDatos.getString("id_cliente"));
             statement.setString(2, jsonDatos.getString("id_destino"));
-            statement.setString(3, jsonDatos.getString("id_ruta"));
-            statement.setString(4, jsonDatos.getString("peso"));
-            statement.setString(5, jsonDatos.getString("descripcion"));
-            statement.setString(6, jsonDatos.getString("referencia_destino"));
-            statement.setString(7, jsonDatos.getString("estado"));
-            statement.setString(8, jsonDatos.getString("fecha_entrada"));
-            statement.setString(9, jsonDatos.getString("fecha_entrega"));
+            statement.setInt(3, jsonDatos.getInt("peso"));
+            statement.setString(4, jsonDatos.getString("descripcion"));
+            statement.setString(5, jsonDatos.getString("referencia_destino"));
+            statement.setInt(6, jsonDatos.getInt("estado"));
+            statement.setString(7, jsonDatos.getString("fecha_entrada"));
 
             filasAfectadas = statement.executeUpdate();
 

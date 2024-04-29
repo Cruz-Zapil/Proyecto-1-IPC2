@@ -18,20 +18,28 @@ export class GenerateInvoiceComponent {
   resultError: String;
   destinos: any[] = [];
 
+  /// mensajes:
+  statusClient: String = '';
+  statusPaquete: String = '';
+  statusNewPaquete: boolean =false;
+
   /// atributos de clase:
   nombreDestino: String = '';
   id_destino: String = '';
-  id_cliente: String = '';
+  id_cliente: String = ''; ///
   id_ruta: String = '';
   peso: number = 0;
   descripcion: String = '';
   referencia_destino: String = '';
-  estado: number = 0;
+  estado: number = 1;
   fecha: Date;
   fechaFormateada: String;
   fechaEntrega: String = '';
 
   listaPaquetes: any[] = [];
+
+  /// atributso destino:
+  destinoPrecio: number =0;
 
   /// constructor:
 
@@ -44,15 +52,16 @@ export class GenerateInvoiceComponent {
 
   /// metodos locales:
   obtenerFechaFormateada(fecha: Date): string {
-    const opciones: Intl.DateTimeFormatOptions = {
-      year: 'numeric',
-      month: '2-digit',
-      day: '2-digit',
-      hour: '2-digit',
-      minute: '2-digit',
-    };
-    return fecha.toLocaleDateString('es-GT', opciones);
-  }
+    const year = fecha.getFullYear();
+    const month = ('0' + (fecha.getMonth() + 1)).slice(-2); // Agrega un cero al mes si es menor a 10
+    const day = ('0' + fecha.getDate()).slice(-2); // Agrega un cero al día si es menor a 10
+    const hours = ('0' + fecha.getHours()).slice(-2); // Agrega un cero a las horas si es menor a 10
+    const minutes = ('0' + fecha.getMinutes()).slice(-2); // Agrega un cero a los minutos si es menor a 10
+    const seconds = ('0' + fecha.getSeconds()).slice(-2); // Agrega un cero a los segundos si es menor a 10
+
+    return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
+}
+
 
   /// recopilar info de paquete:
   enlistaPaquete(): void {
@@ -72,15 +81,13 @@ export class GenerateInvoiceComponent {
     this.id_ruta = '';
     this.peso = 0;
     this.descripcion = '';
-    this.estado = 0;    
+    this.estado = 0;
 
     this.listaPaquetes.push(datePackage);
   }
 
-
-
-
-  destinoSelec(destSelec: any):void {
+  destinoSelec(destSelec: any): void {
+    this.destinoPrecio = destSelec.precio;
     this.nombreDestino = destSelec.nombre;
     this.id_destino = destSelec.id;
   }
@@ -119,6 +126,28 @@ export class GenerateInvoiceComponent {
     }
   }
 
+  /// verificar cliente:
+  verificarCliente(): void {
+    let datos = {
+      id_cliente: this.id_cliente,
+    };
+
+    this.peticiones
+      .getCliente(datos)
+      .subscribe((response: { susccess: boolean }) => {
+        if (response.susccess) {
+          
+          this.statusClient = 'Cliente existente';
+
+        } else {
+          this.statusClient = 'Cliente inexistente';
+        }
+        (error: String) => {
+          this.statusClient = error;
+        };
+      });
+  }
+
   /// metodo para usar servicio:
 
   obtnerDestino(): void {
@@ -138,14 +167,31 @@ export class GenerateInvoiceComponent {
       }
     );
   }
-/*
-  setNewPackage(): void {
-    this.peticiones.setPackage().subscribe((response) => {
-      if (response.success) {
-      } else {
-      }
-    });
+
+
+
+  confirmarPaquete(): void {
+    for (let i = 0; i < this.listaPaquetes.length; i++) {
+      const paquete = this.listaPaquetes[i];
+
+      const datosJSON = JSON.stringify(paquete);
+
+      this.peticiones.setPackage(datosJSON).subscribe(
+        (response: { message: string; success: boolean }) => {
+          if (response.success) {
+            this.statusPaquete = response.message;
+            this.statusNewPaquete = true;
+            /// creamos una factura y luego creamos complemenos de esa factura: 
+            
+          } else {
+            this.statusNewPaquete = false;
+            this.statusPaquete = response.message;
+          }
+        },
+        (error: any) => {}
+      );
+    }
   }
-*/
-  checkClient() {}
+
+  
 }

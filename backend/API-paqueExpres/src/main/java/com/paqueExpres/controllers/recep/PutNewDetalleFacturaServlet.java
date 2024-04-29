@@ -21,9 +21,6 @@ public class PutNewDetalleFacturaServlet extends HttpServlet {
     @Override
     protected void doPut(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         
-        
-
-
         // obtener datos enviados
         BufferedReader reader = request.getReader();
 
@@ -44,7 +41,7 @@ public class PutNewDetalleFacturaServlet extends HttpServlet {
 
             if (estado) {
                 jsonResponse.put("success", true);
-                jsonResponse.put("message", "Se a creado un nuevo Cliente:");
+                jsonResponse.put("message", "Se a creado un nuevo detalle Factura:");
 
             } else {
 
