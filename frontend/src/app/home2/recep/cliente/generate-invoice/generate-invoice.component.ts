@@ -21,7 +21,9 @@ export class GenerateInvoiceComponent {
   /// mensajes:
   statusClient: String = '';
   statusPaquete: String = '';
-  statusNewPaquete: boolean =false;
+  statusNewPaquete: boolean = false;
+  statusNewFactura: String = '';
+  statusNewDetalle: String = '';
 
   /// atributos de clase:
   nombreDestino: String = '';
@@ -37,9 +39,13 @@ export class GenerateInvoiceComponent {
   fechaEntrega: String = '';
 
   listaPaquetes: any[] = [];
+  total: number = 0;
 
   /// atributso destino:
-  destinoPrecio: number =0;
+  destinoPrecio: number = 0;
+
+  /// id de facura creada
+  id_facturaCreada: String = '';
 
   /// constructor:
 
@@ -60,8 +66,7 @@ export class GenerateInvoiceComponent {
     const seconds = ('0' + fecha.getSeconds()).slice(-2); // Agrega un cero a los segundos si es menor a 10
 
     return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
-}
-
+  }
 
   /// recopilar info de paquete:
   enlistaPaquete(): void {
@@ -75,6 +80,7 @@ export class GenerateInvoiceComponent {
       estado: this.estado,
       fecha_entrada: this.fechaFormateada,
       fecha_entrega: this.fechaEntrega,
+      precioDestino: this.destinoPrecio
     };
 
     this.id_destino = '';
@@ -136,9 +142,7 @@ export class GenerateInvoiceComponent {
       .getCliente(datos)
       .subscribe((response: { susccess: boolean }) => {
         if (response.susccess) {
-          
           this.statusClient = 'Cliente existente';
-
         } else {
           this.statusClient = 'Cliente inexistente';
         }
@@ -168,10 +172,9 @@ export class GenerateInvoiceComponent {
     );
   }
 
-
-
   confirmarPaquete(): void {
     for (let i = 0; i < this.listaPaquetes.length; i++) {
+      
       const paquete = this.listaPaquetes[i];
 
       const datosJSON = JSON.stringify(paquete);
@@ -181,8 +184,8 @@ export class GenerateInvoiceComponent {
           if (response.success) {
             this.statusPaquete = response.message;
             this.statusNewPaquete = true;
-            /// creamos una factura y luego creamos complemenos de esa factura: 
-            
+            /// creamos una factura y luego creamos complemenos de esa factura:
+            this.total = this.total + paquete.precioDestino * paquete.peso;
           } else {
             this.statusNewPaquete = false;
             this.statusPaquete = response.message;
@@ -193,5 +196,58 @@ export class GenerateInvoiceComponent {
     }
   }
 
-  
+  crearFactura(): void {
+    let datosAFacturar = {
+      id_cliente: this.id_cliente,
+      id_recepcionista: '',
+      fecha: this.fechaFormateada,
+      total: this.total,
+    };
+
+    const datosJSON = JSON.stringify(datosAFacturar);
+
+    this.peticiones.setNewFactura(datosJSON).subscribe(
+      (response: {
+        id_factura: String;
+        message: String;
+        susccess: boolean;
+      }) => {
+        if (response.susccess) {
+          this.statusNewFactura = response.message;
+          this.id_facturaCreada = response.id_factura;
+        } else {
+          this.statusNewFactura = response.message;
+        }
+      },
+      (error: String) => {
+        this.statusNewFactura = error;
+      }
+    );
+  }
+
+  setDetalleFactura(): void {
+    for (let i = 0; i < this.listaPaquetes.length; i++) {
+      const paquete = this.listaPaquetes[i];
+
+      let detalles = {
+        id_factura: this.id_facturaCreada,
+        id_paquete: paquete.id_paquete,
+      };
+
+      const datosJSON = JSON.stringify(detalles);
+
+      this.peticiones.setDetalleFactura(datosJSON).subscribe(
+        (response: { message: string; success: boolean }) => {
+          if (response.success) {
+            this.statusNewDetalle = response.message;
+          } else {
+            this.statusNewDetalle = response.message;
+          }
+        },
+        (error: any) => {}
+      );
+    }
+    this.listaPaquetes = [];
+
+  }
 }

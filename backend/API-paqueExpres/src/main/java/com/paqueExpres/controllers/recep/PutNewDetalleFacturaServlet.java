@@ -17,18 +17,18 @@ import com.paqueExpres.DAO.DetalleFactura;
 
 public class PutNewDetalleFacturaServlet extends HttpServlet {
 
-
     @Override
-    protected void doPut(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        
+    protected void doPut(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+
         // obtener datos enviados
         BufferedReader reader = request.getReader();
 
         /// instaciar conexion
-       DetalleFactura detalleFactura = new DetalleFactura();
+        DetalleFactura detalleFactura = new DetalleFactura();
 
         // responder con boolean
-        boolean estado = false;
+        long idFactura = -1; // Inicializa el ID de la factura
 
         /// respuesta en JSON
         JSONObject jsonResponse = new JSONObject();
@@ -37,10 +37,11 @@ public class PutNewDetalleFacturaServlet extends HttpServlet {
 
             /// establecer conexion
             detalleFactura.conectar();
-            estado = detalleFactura.newDetalleFactura(reader);
+            idFactura = detalleFactura.newDetalleFactura(reader);
 
-            if (estado) {
+            if (idFactura != -1) {
                 jsonResponse.put("success", true);
+                jsonResponse.put("id_factura", idFactura);
                 jsonResponse.put("message", "Se a creado un nuevo detalle Factura:");
 
             } else {
@@ -66,11 +67,6 @@ public class PutNewDetalleFacturaServlet extends HttpServlet {
         // Escribir el JSON de respuesta en el PrintWriter de HttpServletResponse
         response.getWriter().write(jsonResponse.toString());
 
-    
-
-
     }
-
-
 
 }

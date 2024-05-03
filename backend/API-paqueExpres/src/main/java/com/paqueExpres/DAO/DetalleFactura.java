@@ -26,11 +26,12 @@ public class DetalleFactura {
         jdbConnection = conexion.obtenerConexion();
     }
 
-    public boolean newDetalleFactura(BufferedReader datosEnviados) throws IOException, JSONException, SQLException {
+    public long newDetalleFactura(BufferedReader datosEnviados) throws IOException, JSONException, SQLException {
 
         StringBuilder sb = new StringBuilder();
         String line;
         int filasAfectadas = 0;
+        long idFactura = -1; // Inicializa el ID de la factura
 
         while ((line = datosEnviados.readLine()) != null) {
             sb.append(line);
@@ -48,6 +49,15 @@ public class DetalleFactura {
 
             filasAfectadas = statement.executeUpdate();
 
+            // Obtener el ID de la factura creada
+            try (ResultSet generatedKeys = statement.getGeneratedKeys()) {
+                if (generatedKeys.next()) {
+                    idFactura = generatedKeys.getLong(1);
+                } else {
+                    throw new SQLException("No se pudo obtener el ID de la factura creada");
+                }
+            }
+
             /// cerrando recursos:
             statement.close();
 
@@ -59,12 +69,13 @@ public class DetalleFactura {
             }
 
         }
-
+        
         if (filasAfectadas > 0) {
-            return true;
+            // Devuelve el ID de la factura en lugar de un booleano
+            return idFactura;
         }
-
-        return false;
+    
+        return -1; // Devuelve -1 si no se pudo crear la factura
     }
 
     public JSONArray getAllDetalleFactura() throws SQLException {
@@ -94,7 +105,6 @@ public class DetalleFactura {
 
         return listaDetalle;
     }
-
 
     private JSONArray listarDetalleFactura(ResultSet resultSet) throws SQLException, JSONException {
         // Crear un JSONArray para almacenar los usuarios

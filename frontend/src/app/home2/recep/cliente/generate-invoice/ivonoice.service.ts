@@ -31,13 +31,20 @@ export class IvonoiceService {
   setPackage(datosPaquete: any): any {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     return this.http.put<any>(
-      'http://localhost:8080/paqueExpres-1.0/new-package',
-      datosPaquete,
-      { headers }
+      'http://localhost:8080/paqueExpres-1.0/new-package',datosPaquete,{ headers }
     );
   }
 
   setDetalleFactura(datosDetalle: any): any {
-    return this.http.put<any>('', datosDetalle);
+
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    return this.http.put<any>('http://localhost:8080/paqueExpres-1.0/new-detalleFactura', datosDetalle, {headers});
   }
+
+  setNewFactura(datosFactura: any): any{
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    return this.http.put<any>('http://localhost:8080/paqueExpres-1.0/new-factura',datosFactura,{headers})
+
+  }
+
 }

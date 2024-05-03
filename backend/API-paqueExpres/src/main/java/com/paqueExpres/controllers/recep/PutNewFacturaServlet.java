@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.json.JSONObject;
 
 import com.paqueExpres.DAO.DetalleFactura;
+import com.paqueExpres.DAO.FacturaDAO;
 
 @WebServlet("/new-factura")
 public class PutNewFacturaServlet extends HttpServlet {
@@ -26,7 +27,7 @@ public class PutNewFacturaServlet extends HttpServlet {
         BufferedReader reader = request.getReader();
 
         /// instaciar conexion
-       DetalleFactura detalleFactura = new DetalleFactura();
+       FacturaDAO facturaDAO = new FacturaDAO();
 
         // responder con boolean
         boolean estado = false;
@@ -37,12 +38,12 @@ public class PutNewFacturaServlet extends HttpServlet {
         try {
 
             /// establecer conexion
-            detalleFactura.conectar();
-            estado = detalleFactura.newDetalleFactura(reader);
+            facturaDAO.conectar();
+            estado = facturaDAO.newFactura(reader);
 
             if (estado) {
                 jsonResponse.put("success", true);
-                jsonResponse.put("message", "Se a creado un nuevo detalle Factura:");
+                jsonResponse.put("message", "Se a creado un nuevo Factura:");
 
             } else {
 

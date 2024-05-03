@@ -39,15 +39,14 @@ public class FacturaDAO {
         JSONObject jsonDatos = new JSONObject(sb.toString());
 
         String sql = "INSERT INTO " + nameTable
-                + "(id_cliente, id_recepcionista, fecha, sub_total, total) VALUES (?,?,?,?,?)";
+                + "(id_cliente, id_recepcionista, fecha, total) VALUES (?,?,?,?)";
 
         try (PreparedStatement statement = jdbConnection.prepareStatement(sql)) {
 
             statement.setString(1, jsonDatos.getString("id_cliente"));
             statement.setString(2, jsonDatos.getString("id_recepcionista"));
-            statement.setString(2, jsonDatos.getString("fecha"));
-            statement.setString(2, jsonDatos.getString("sub_total"));
-            statement.setString(2, jsonDatos.getString("total"));
+            statement.setString(3, jsonDatos.getString("fecha"));
+            statement.setString(4, jsonDatos.getString("total"));
 
             filasAfectadas = statement.executeUpdate();
 
